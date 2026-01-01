@@ -18,11 +18,11 @@ export function FileItem({ job }: FileItemProps) {
   }
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-white border rounded-lg shadow-sm">
+    <div className="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
       <img
         src={job.originalPreview}
         alt={job.originalFile.name}
-        className="w-16 h-16 object-cover rounded"
+        className="w-16 h-16 object-cover rounded border border-slate-200"
       />
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-gray-900 truncate">

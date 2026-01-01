@@ -19,11 +19,8 @@ export function FileList() {
   }
 
   return (
-    <div className="space-y-4">
-      {files.map((job) => (
-        <FileItem key={job.id} job={job} />
-      ))}
-      <div className="flex justify-center gap-4">
+    <div className="space-y-6">
+      <div className="sticky top-16 z-40 w-full bg-white/80 backdrop-blur-md py-4 mb-6 border-b border-slate-200 flex justify-center gap-4">
         <Button
           onClick={() => startConversion()}
           disabled={isProcessing}
@@ -42,6 +39,11 @@ export function FileList() {
             Download {completedCount} File{completedCount !== 1 ? 's' : ''} as ZIP
           </Button>
         )}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {files.map((job) => (
+          <FileItem key={job.id} job={job} />
+        ))}
       </div>
     </div>
   )
