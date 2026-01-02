@@ -1,11 +1,13 @@
 {
   "name": "privacy-converter",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Convert images locally in your browser with complete privacy",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:pwa": "tsc -b && vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -41,6 +43,7 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
+    "vite-plugin-pwa": "^0.21.2",
     "vitest": "^4.0.16"
   }
 }
