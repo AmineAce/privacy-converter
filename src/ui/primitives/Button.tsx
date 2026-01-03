@@ -12,6 +12,10 @@ const buttonVariants = cva(
           "bg-slate-900 text-white hover:bg-slate-800",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        neon:
+          "bg-brand-neon text-brand-blackest hover:bg-brand-neon/90 border-transparent",
+        brandOutline:
+          "bg-brand-dark border border-brand-sage text-brand-sage hover:text-brand-mist hover:border-brand-mist",
       },
       size: {
         default: "h-10 px-4 py-2",
