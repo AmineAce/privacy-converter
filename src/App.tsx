@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/Header'
 import { DropZone } from '@/components/features/DropZone'
 import { FileList } from '@/components/features/FileList'
 import { Footer } from '@/components/layout/Footer'
+import { SEOContent } from '@/components/layout/SEOContent'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <FileList />
         </div>
       </main>
+      <SEOContent />
       <Footer />
     </div>
   )

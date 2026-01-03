@@ -16,7 +16,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
-      includeAssets: ['vite.svg'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'og-image.png'],
       manifest: {
         name: 'Privacy Image Converter',
         short_name: 'PrivacyConverter',
@@ -26,9 +26,14 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: 'vite.svg',
-            sizes: 'any',
-            type: 'image/svg+xml'
+            src: 'favicons/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'favicons/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           }
         ]
       }

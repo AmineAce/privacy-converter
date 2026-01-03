@@ -4,7 +4,7 @@ export function validateFile(file: File): { isValid: boolean; error?: string } {
   // Check type
   if (!(file.type in ACCEPTED_IMAGE_TYPES)) {
     return { isValid: false, error: 'File type not supported' }
-  }
+  } 
 
   // Check size
   if (file.size > MAX_FILE_SIZE) {

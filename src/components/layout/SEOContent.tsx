@@ -1,0 +1,80 @@
+export function SEOContent() {
+  return (
+    <article className="max-w-4xl mx-auto px-8 py-16 space-y-12 text-gray-600">
+      <header className="text-center">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          Why use PrivacyConverter?
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          A secure, privacy-focused image converter that processes everything locally in your browser.
+        </p>
+      </header>
+
+      <section className="grid md:grid-cols-3 gap-8">
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Zero Server Uploads</h3>
+          <p className="text-gray-600">
+            Your images never leave your device. All processing happens client-side,
+            ensuring complete privacy and security.
+          </p>
+        </div>
+
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Offline Capable</h3>
+          <p className="text-gray-600">
+            Works without an internet connection. Convert images anywhere,
+            anytime, with full functionality offline.
+          </p>
+        </div>
+
+        <div className="text-center">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Bulk Processing</h3>
+          <p className="text-gray-600">
+            Convert multiple images at once. Select multiple files and process
+            them all in a single batch operation.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+          How to Convert Images
+        </h3>
+        <ol className="list-decimal list-inside space-y-3 max-w-2xl mx-auto text-gray-600">
+          <li>Click or drag images onto the upload area above</li>
+          <li>Wait for the files to be processed locally</li>
+          <li>Download your converted images individually or as a ZIP</li>
+        </ol>
+      </section>
+
+      <section>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+          Frequently Asked Questions
+        </h3>
+        <div className="space-y-6 max-w-3xl mx-auto">
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Is it free?</h4>
+            <p className="text-gray-600">
+              Yes, PrivacyConverter is completely free to use with no limitations on file size or number of conversions.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Does it support WebP format?</h4>
+            <p className="text-gray-600">
+              Yes, you can convert between JPG, PNG, and WebP formats. The tool supports the most common image formats.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium text-gray-800 mb-2">Is it really secure?</h4>
+            <p className="text-gray-600">
+              Absolutely. All processing happens in your browser using JavaScript Canvas API.
+              Your images are never uploaded to any server.
+            </p>
+          </div>
+        </div>
+      </section>
+    </article>
+  )
+}
