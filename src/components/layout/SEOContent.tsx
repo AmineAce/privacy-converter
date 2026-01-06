@@ -125,6 +125,42 @@ export function SEOContent() {
           </div>
         </div>
       </section>
+
+      <section>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+          Upcoming Features
+        </h3>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
+            <div className="mb-2">
+              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
+            </div>
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">HEIC to JPG</h4>
+            <p className="text-brand-sage">Convert iPhone photos on the fly.</p>
+          </div>
+          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
+            <div className="mb-2">
+              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
+            </div>
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">PNG to JPG</h4>
+            <p className="text-brand-sage">Optimize file size for websites.</p>
+          </div>
+          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
+            <div className="mb-2">
+              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
+            </div>
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">PDF Tools</h4>
+            <p className="text-brand-sage">Securely merge or convert PDFs locally.</p>
+          </div>
+          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg md:col-span-2 lg:col-span-1">
+            <div className="mb-2">
+              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
+            </div>
+            <h4 className="text-lg font-semibold text-gray-800 mb-2">SVG Converter</h4>
+            <p className="text-brand-sage">Vector to Raster conversion.</p>
+          </div>
+        </div>
+      </section>
     </article>
   )
 }

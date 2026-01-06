@@ -23,7 +23,7 @@ function App() {
         </div>
         <aside className="hidden lg:flex w-[300px] flex-col gap-6 sticky top-32 h-fit pr-6">
           <AdSpace type="vertical" heading="Private VPN" />
-          <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm w-full max-w-[300px] text-center">
+          <div className="hidden bg-white border border-slate-200 rounded-xl p-4 shadow-sm w-full max-w-[300px] text-center">
             <strong className="font-semibold text-slate-900 text-xs uppercase tracking-wide mb-1">Why Ads?</strong>
             <p className="text-xs text-slate-500 leading-relaxed">We use ads to keep this tool 100% free, private, and offline-capable. Thank you for supporting independent development.</p>
           </div>
