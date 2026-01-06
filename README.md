@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Secure Converter
 
-Currently, two official plugins are available:
+*The secure, client-side image tool that respects your data.*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[🚀 Launch App](https://secure-jpg-to-png.pages.dev)
 
-## React Compiler
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Built With: React](https://img.shields.io/badge/Built%20With-React-blue.svg)
+![Status: Stable](https://img.shields.io/badge/Status-Stable-green.svg)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+## Hero Visual
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![App Screenshot](./public/og-image.png)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Why Another Converter?
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Most online converters upload your sensitive files to a remote server. You have no control over who sees them.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This tool uses WebAssembly and Canvas API to process images 100% locally. Your files never leave your browser memory.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Key Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 🔒 **Privacy First**: Zero server uploads.
+- ⚡ **Blazing Fast**: No upload/download wait times.
+- 📂 **Bulk Processing**: Drag & drop 100+ images at once.
+- 📦 **Offline Ready**: Installable PWA that works without Wi-Fi.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
+- Zustand
+
+## Quick Start
+
+```bash
+git clone https://github.com/AmineAce/privacy-converter.git
+cd privacy-converter
+npm install
+npm run dev
 ```

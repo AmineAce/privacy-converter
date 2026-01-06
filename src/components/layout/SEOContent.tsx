@@ -27,7 +27,7 @@ export function SEOContent() {
     <article className="max-w-4xl mx-auto px-8 py-16 space-y-12 text-gray-600">
       <header className="text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          Why use PrivacyConverter?
+          Why use Secure Converter?
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           A secure, privacy-focused image converter that processes everything locally in your browser.
@@ -83,7 +83,7 @@ export function SEOContent() {
               size="lg"
               className="mb-4"
             >
-              Install PrivacyConverter App
+              Install Secure Converter App
             </Button>
           )}
           <div className="text-sm text-gray-600">
@@ -105,7 +105,7 @@ export function SEOContent() {
           <div>
             <h4 className="text-lg font-medium text-gray-800 mb-2">Is it free?</h4>
             <p className="text-gray-600">
-              Yes, PrivacyConverter is completely free to use with no limitations on file size or number of conversions.
+              Yes, Secure Converter is completely free to use with no limitations on file size or number of conversions.
             </p>
           </div>
 

@@ -18,8 +18,8 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'og-image.png'],
       manifest: {
-        name: 'Privacy Image Converter',
-        short_name: 'PrivacyConverter',
+        name: 'Secure Converter',
+        short_name: 'SecureConvert',
         description: 'Convert images locally in your browser with complete privacy',
         theme_color: '#FCBAEF',
         background_color: '#071D16',

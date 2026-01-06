@@ -1,8 +1,8 @@
 {
-  "name": "privacy-converter",
+  "name": "secure-converter",
   "private": true,
   "version": "1.0.0",
-  "description": "Convert images locally in your browser with complete privacy",
+  "description": "Secure, offline image converter that processes locally in your browser",
   "type": "module",
   "scripts": {
     "dev": "vite",
