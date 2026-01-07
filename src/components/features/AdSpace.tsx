@@ -1,14 +1,12 @@
 import React from 'react';
 
 interface AdSpaceProps {
-  type: 'vertical' | 'horizontal';
   imageSrc: string;
   linkUrl: string;
   className?: string;
 }
 
 const AdSpace: React.FC<AdSpaceProps> = ({
-  type,
   imageSrc,
   linkUrl,
   className
