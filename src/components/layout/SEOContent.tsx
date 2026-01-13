@@ -1,28 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Button } from '@/ui/primitives/Button'
+
 
 export function SEOContent() {
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null)
-
-  useEffect(() => {
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault()
-      setInstallPrompt(e as BeforeInstallPromptEvent)
-    }
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    }
-  }, [])
-
-  const handleInstallClick = async () => {
-    if (installPrompt) {
-      await installPrompt.prompt()
-      setInstallPrompt(null)
-    }
-  }
   return (
     <article className="max-w-4xl mx-auto px-8 py-16 space-y-12 text-gray-600">
       <header className="text-center">
@@ -71,31 +49,7 @@ export function SEOContent() {
         </ol>
       </section>
 
-      <section>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          Install as an App
-        </h3>
-        <div className="max-w-2xl mx-auto text-center space-y-4">
-          {installPrompt && (
-            <Button
-              onClick={handleInstallClick}
-              variant="default"
-              size="lg"
-              className="mb-4"
-            >
-              Install Secure Converter App
-            </Button>
-          )}
-          <div className="text-sm text-gray-600">
-            <p className="mb-2">
-              <strong>On Chrome/Edge:</strong> Look for the install icon in the address bar, or use the button above.
-            </p>
-            <p>
-              <strong>On iOS Safari:</strong> Tap the share button, then "Add to Home Screen".
-            </p>
-          </div>
-        </div>
-      </section>
+
 
       <section>
         <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">

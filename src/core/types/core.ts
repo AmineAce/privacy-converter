@@ -1,3 +1,5 @@
+export type OutputFormat = 'image/png' | 'image/jpeg' | 'image/webp'
+
 export type ConversionStatus = 'idle' | 'pending' | 'processing' | 'completed' | 'error'
 
 export type ConvertedFile = {

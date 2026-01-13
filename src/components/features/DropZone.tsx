@@ -26,14 +26,9 @@ export function DropZone({ className }: { className?: string } = {}) {
     >
       <input {...getInputProps()} />
       <Upload className="w-10 h-10 text-slate-400" />
-      <div>
-        <p className="text-lg font-medium text-gray-900">
-          Drag & drop images here
-        </p>
-        <p className="text-sm text-gray-500">
-          Supports JPG, WEBP
-        </p>
-      </div>
+      <p className="text-lg font-medium text-gray-900">
+        Drag & drop images here
+      </p>
     </div>
   )
 }

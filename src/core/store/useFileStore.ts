@@ -1,19 +1,23 @@
 import { create } from 'zustand'
-import type { ImageJob } from '@/core/types/core'
+import type { ImageJob, OutputFormat } from '@/core/types/core'
 import { validateFile } from '@/lib/validation'
 import { convertImage } from '@/core/engine/converter'
 
 interface FileStore {
   files: ImageJob[]
   isProcessing: boolean
+  outputFormat: OutputFormat
   addFiles: (incomingFiles: File[]) => void
   startConversion: () => Promise<void>
   removeFile: (id: string) => void
+  setOutputFormat: (format: OutputFormat) => void
+  clearFiles: () => void
 }
 
 export const useFileStore = create<FileStore>((set, get) => ({
   files: [],
   isProcessing: false,
+  outputFormat: 'image/png',
 
   addFiles: (incomingFiles) => {
     console.log('files sent to store', incomingFiles)
@@ -45,7 +49,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
       }))
 
       try {
-        const result = await convertImage(file.originalFile)
+        const result = await convertImage(file.originalFile, get().outputFormat)
 
         set((state) => ({
           files: state.files.map((f) =>
@@ -78,5 +82,17 @@ export const useFileStore = create<FileStore>((set, get) => ({
     set((state) => ({
       files: state.files.filter((f) => f.id !== id),
     }))
+  },
+
+  setOutputFormat: (format) => set({ outputFormat: format }),
+
+  clearFiles: () => {
+    get().files.forEach((file) => {
+      URL.revokeObjectURL(file.originalPreview)
+      if (file.result) {
+        URL.revokeObjectURL(file.result.url)
+      }
+    })
+    set({ files: [], isProcessing: false })
   },
 }))

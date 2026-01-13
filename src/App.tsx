@@ -1,5 +1,6 @@
 import { Header } from '@/components/layout/Header'
 import { DropZone } from '@/components/features/DropZone'
+import { ConversionNav } from '@/components/features/ConversionNav'
 import { FileList } from '@/components/features/FileList'
 import { Footer } from '@/components/layout/Footer'
 import { SEOContent } from '@/components/layout/SEOContent'
@@ -18,6 +19,9 @@ function App() {
           <div className="w-full max-w-3xl p-8 space-y-8">
             <h1 className="sr-only">Secure Converter</h1>
             <DropZone />
+            <div className="mt-6">
+              <ConversionNav />
+            </div>
             <FileList />
           </div>
           <SEOContent />

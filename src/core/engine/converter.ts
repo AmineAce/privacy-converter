@@ -1,6 +1,6 @@
-import type { ConvertedFile } from '../types/core'
+import type { ConvertedFile, OutputFormat } from '../types/core'
 
-export function convertImage(file: File): Promise<ConvertedFile> {
+export function convertImage(file: File, format: OutputFormat): Promise<ConvertedFile> {
   return new Promise((resolve, reject) => {
     createImageBitmap(file)
       .then((bitmap) => {
@@ -22,12 +22,14 @@ export function convertImage(file: File): Promise<ConvertedFile> {
 
         ctx.drawImage(bitmap, 0, 0)
 
+        const quality = (format === 'image/jpeg' || format === 'image/webp') ? 0.85 : undefined
+
         const toBlob = (canvas: HTMLCanvasElement | OffscreenCanvas): Promise<Blob | null> => {
           if (canvas instanceof OffscreenCanvas) {
-            return canvas.convertToBlob({ type: 'image/png' })
+            return canvas.convertToBlob({ type: format, ...(quality && { quality }) })
           } else {
             return new Promise((resolve) => {
-              canvas.toBlob(resolve, 'image/png')
+              canvas.toBlob(resolve, format, quality)
             })
           }
         }
@@ -41,7 +43,10 @@ export function convertImage(file: File): Promise<ConvertedFile> {
         }
 
         const url = URL.createObjectURL(blob)
-        const name = file.name.replace(/\.[^/.]+$/, '.png')
+        let extension = '.png'
+        if (format === 'image/jpeg') extension = '.jpg'
+        else if (format === 'image/webp') extension = '.webp'
+        const name = file.name.replace(/\.[^/.]+$/, extension)
 
         resolve({
           blob,

@@ -7,7 +7,7 @@ export function Header() {
           <span className="font-bold text-brand-mist">Secure Converter</span>
         </div>
         <div className="bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full border border-green-200">
-          Offline-Ready & Secure
+          Local & Secure
         </div>
       </div>
     </header>
