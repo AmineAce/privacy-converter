@@ -2,119 +2,77 @@
 
 export function SEOContent() {
   return (
-    <article className="max-w-4xl mx-auto px-8 py-16 space-y-12 text-gray-600">
-      <header className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          Why use Secure Converter?
+    <article className="max-w-3xl mx-auto px-8 py-16 space-y-8 text-left">
+      <section>
+        <h2 className="text-3xl font-bold text-slate-900 mt-8 mb-4">
+          Secure Image Conversion
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          A secure, privacy-focused image converter that processes everything locally in your browser.
+        <p className="text-slate-600 leading-7 mb-4">
+          This powerful online tool allows you to convert images between popular formats like JPG, PNG, and WebP directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Experience fast, secure image conversion with full offline capability.
         </p>
-      </header>
-
-      <section className="grid md:grid-cols-3 gap-8">
-        <div className="text-center">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Zero Server Uploads</h3>
-          <p className="text-gray-600">
-            Your images never leave your device. All processing happens client-side,
-            ensuring complete privacy and security.
-          </p>
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Offline Capable</h3>
-          <p className="text-gray-600">
-            Works without an internet connection. Convert images anywhere,
-            anytime, with full functionality offline.
-          </p>
-        </div>
-
-        <div className="text-center">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Bulk Processing</h3>
-          <p className="text-gray-600">
-            Convert multiple images at once. Select multiple files and process
-            them all in a single batch operation.
-          </p>
-        </div>
       </section>
 
       <section>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          How to Convert Images
-        </h3>
-        <ol className="list-decimal list-inside space-y-3 max-w-2xl mx-auto text-gray-600">
-          <li>Click or drag images onto the upload area above</li>
-          <li>Wait for the files to be processed locally</li>
-          <li>Download your converted images individually or as a ZIP</li>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Key Features
+        </h2>
+        <ul className="list-decimal pl-5 space-y-2 text-slate-600 mb-6">
+          <li>
+            <strong>Zero Server Uploads:</strong> Your images never leave your device. All processing happens client-side, ensuring complete privacy and security.
+          </li>
+          <li>
+            <strong>Offline Capable:</strong> Works without an internet connection. Convert images anywhere, anytime, with full functionality offline.
+          </li>
+          <li>
+            <strong>Bulk Processing:</strong> Convert multiple images at once. Select multiple files and process them all in a single batch operation.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Understanding Image Formats: JPG vs. PNG
+        </h2>
+        <p className="text-slate-600 leading-7 mb-4">
+          Files ending in .JPG and .PNG are the most common standards for digital imagery. JPG files use lossy compression, which significantly reduces file size by discarding some image data. This makes JPGs perfect for photographs and complex images where smaller file sizes are more important than perfect quality.
+        </p>
+        <p className="text-slate-600 leading-7 mb-4">
+          PNG files, on the other hand, use lossless compression and support transparency (alpha channels), making them ideal for logos, graphics with text, and images that need to be edited further. Converting JPG to PNG preserves all available image data and prepares your files for professional editing without additional quality loss.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Why Convert Locally?
+        </h2>
+        <p className="text-slate-600 leading-7 mb-4">
+          Most online image converters require you to upload your files to remote cloud servers, creating significant privacy risks. Sensitive documents, personal photos, business files, and confidential data could be intercepted, stored without permission, or exposed to data breaches. Our solution processes everything directly in your browser using advanced WebAssembly technology. Your files never leave your device, ensuring complete privacy and security while maintaining full offline functionality - no internet connection required.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          How to Convert Images for Free
+        </h2>
+        <p className="text-slate-600 leading-7 mb-4">
+          Converting your images is incredibly simple and takes just a few seconds. Our intuitive interface makes it easy for anyone to convert files without technical knowledge.
+        </p>
+        <ol className="list-decimal pl-5 space-y-2 text-slate-600 mb-6">
+          <li><strong>Select Files:</strong> Drag and drop your JPG, PNG, or WebP files into the box above. You can select unlimited files at once.</li>
+          <li><strong>Instant Conversion:</strong> The tool processes them instantly using your browser's power.</li>
+          <li><strong>Save:</strong> Click "Download All" to save a ZIP file, or download images individually.</li>
         </ol>
       </section>
 
-
-
       <section>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          Frequently Asked Questions
-        </h3>
-        <div className="space-y-6 max-w-3xl mx-auto">
-          <div>
-            <h4 className="text-lg font-medium text-gray-800 mb-2">Is it free?</h4>
-            <p className="text-gray-600">
-              Yes, Secure Converter is completely free to use with no limitations on file size or number of conversions.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-medium text-gray-800 mb-2">Does it support WebP format?</h4>
-            <p className="text-gray-600">
-              Yes, you can convert between JPG, PNG, and WebP formats. The tool supports the most common image formats.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-medium text-gray-800 mb-2">Is it really secure?</h4>
-            <p className="text-gray-600">
-              Absolutely. All processing happens in your browser using JavaScript Canvas API.
-              Your images are never uploaded to any server.
-            </p>
-          </div>
-        </div>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Is it Safe to Use This Tool?
+        </h2>
+        <p className="text-slate-600 leading-7 mb-4">
+          Yes, this is one of the safest ways to convert image files online. Unlike cloud-based converters that store your files on remote servers, our tool processes everything locally in your browser. There are no data breaches to worry about, no file retention policies, and no third-party access to your images. Your original files remain untouched on your device, and converted results are generated instantly in your browser's memory before being downloaded directly to your computer.
+        </p>
       </section>
 
-      <section>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-          Upcoming Features
-        </h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
-            <div className="mb-2">
-              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
-            </div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">HEIC to JPG</h4>
-            <p className="text-brand-sage">Convert iPhone photos on the fly.</p>
-          </div>
-          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
-            <div className="mb-2">
-              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
-            </div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">PNG to JPG</h4>
-            <p className="text-brand-sage">Optimize file size for websites.</p>
-          </div>
-          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg">
-            <div className="mb-2">
-              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
-            </div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">PDF Tools</h4>
-            <p className="text-brand-sage">Securely merge or convert PDFs locally.</p>
-          </div>
-          <div className="text-center p-4 border border-dashed border-brand-sage/30 rounded-lg md:col-span-2 lg:col-span-1">
-            <div className="mb-2">
-              <span className="text-xs bg-brand-sage/20 text-brand-sage px-2 py-1 rounded">Coming Soon</span>
-            </div>
-            <h4 className="text-lg font-semibold text-gray-800 mb-2">SVG Converter</h4>
-            <p className="text-brand-sage">Vector to Raster conversion.</p>
-          </div>
-        </div>
-      </section>
     </article>
   )
 }

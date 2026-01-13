@@ -18,6 +18,14 @@ export function Footer() {
           >
             <Github className="w-5 h-5" />
           </a>
+          <a
+            href="https://lucide.dev"
+            target="_blank"
+            rel="noreferrer"
+            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            Icons by Lucide
+          </a>
         </div>
       </div>
     </footer>

@@ -9,6 +9,10 @@ export function ConversionNav() {
     { label: 'JPG to PNG', format: 'image/png' as const },
     { label: 'PNG to JPG', format: 'image/jpeg' as const },
     { label: 'WebP to JPG', format: 'image/jpeg' as const },
+    { label: 'JPG to WebP', format: 'image/webp' as const },
+    { label: 'PNG to WebP', format: 'image/webp' as const },
+    { label: 'SVG to PNG', format: 'image/png' as const },
+    { label: 'SVG to JPG', format: 'image/jpeg' as const },
   ]
 
   return (
