@@ -73,6 +73,15 @@ export function SEOContent() {
         </p>
       </section>
 
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Why do we have ads?
+        </h2>
+        <p className="text-slate-600 leading-7 mb-4">
+          Secure Converter is 100% free and open source. To cover the costs of hosting, domain maintenance, and development without selling your data, we partner with privacy-focused companies (like VPNs) that we personally trust. These recommendations allow us to keep the tool free for everyone forever.
+        </p>
+      </section>
+
     </article>
   )
 }
