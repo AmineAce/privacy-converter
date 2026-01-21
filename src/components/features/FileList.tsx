@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { FileItem } from './FileItem'
 import { Button } from '@/ui/primitives/Button'
 import { useFileStore } from '@/core/store/useFileStore'
@@ -11,6 +11,16 @@ export function FileList() {
   const isProcessing = useFileStore((state) => state.isProcessing)
   const startConversion = useFileStore((state) => state.startConversion)
   const clearFiles = useFileStore((state) => state.clearFiles)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const prevIsProcessingRef = useRef(false)
+
+  useEffect(() => {
+    // Pre-load the success audio
+    audioRef.current = new Audio('/success.mp3')
+    if (audioRef.current) {
+      audioRef.current.volume = 0.40
+    }
+  }, [])
 
   useEffect(() => {
     if (isConfirming) {
@@ -18,6 +28,13 @@ export function FileList() {
       return () => clearTimeout(timeout)
     }
   }, [isConfirming])
+
+  useEffect(() => {
+    if (prevIsProcessingRef.current && !isProcessing && files.length > 0 && audioRef.current) {
+      audioRef.current.play().catch((error) => console.error('Failed to play success audio:', error))
+    }
+    prevIsProcessingRef.current = isProcessing
+  }, [isProcessing, files.length])
 
   if (files.length === 0) return null
 
