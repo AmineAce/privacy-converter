@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, Twitter, MessageCircle, Copy } from 'lucide-react'
+import { X, MessageCircle, Copy } from 'lucide-react'
 
 interface ShareModalProps {
   isOpen: boolean
