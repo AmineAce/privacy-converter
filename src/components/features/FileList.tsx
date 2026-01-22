@@ -9,6 +9,7 @@ export function FileList() {
   const [isConfirming, setIsConfirming] = useState(false)
   const files = useFileStore((state) => state.files)
   const isProcessing = useFileStore((state) => state.isProcessing)
+  const outputFormat = useFileStore((state) => state.outputFormat)
   const startConversion = useFileStore((state) => state.startConversion)
   const clearFiles = useFileStore((state) => state.clearFiles)
   const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -68,9 +69,15 @@ export function FileList() {
         </Button>
         <Button
           onClick={() => startConversion()}
-          disabled={isProcessing}
+          disabled={isProcessing || !outputFormat}
           size="lg"
-          className={isProcessing ? "bg-slate-900 text-emerald-500 border border-emerald-500/50" : "bg-black text-white"}
+          className={
+            isProcessing
+              ? "bg-slate-900 text-emerald-500 border border-emerald-500/50"
+              : !outputFormat
+              ? "bg-black text-white opacity-50 cursor-not-allowed"
+              : "bg-black text-white"
+          }
         >
           {isProcessing ? 'Converting...' : 'Convert'}
         </Button>

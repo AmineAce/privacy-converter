@@ -5,12 +5,14 @@ import { DropZone } from '@/components/features/DropZone'
 import { FileList } from '@/components/features/FileList'
 import { Footer } from '@/components/layout/Footer'
 import { SEOContent } from '@/components/layout/SEOContent'
+import { Toast } from '@/components/common/Toast'
 import AdSpace from '@/components/features/AdSpace'
 
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      <Toast />
       <Header />
       <main className="flex-1 flex">
         <aside className="hidden xl:flex w-[300px] flex-col gap-6 sticky top-32 h-fit pl-6">

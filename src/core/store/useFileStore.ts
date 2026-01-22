@@ -2,22 +2,30 @@ import { create } from 'zustand'
 import type { ImageJob, OutputFormat } from '@/core/types/core'
 import { validateFile } from '@/lib/validation'
 import { convertImage } from '@/core/engine/converter'
+import { useToastStore } from './useToastStore'
 
 interface FileStore {
   files: ImageJob[]
   isProcessing: boolean
-  outputFormat: OutputFormat
+  activeMode: string | null
+  outputFormat: OutputFormat | null
+  suggestedModes: string[]
   addFiles: (incomingFiles: File[]) => void
   startConversion: () => Promise<void>
   removeFile: (id: string) => void
   setOutputFormat: (format: OutputFormat) => void
+  setActiveMode: (mode: string | null) => void
+  setSuggestedModes: (modes: string[]) => void
+  resetFileStatuses: () => void
   clearFiles: () => void
 }
 
 export const useFileStore = create<FileStore>((set, get) => ({
   files: [],
   isProcessing: false,
-  outputFormat: 'image/png',
+  activeMode: null,
+  outputFormat: null,
+  suggestedModes: [],
 
   addFiles: (incomingFiles) => {
     console.log('files sent to store', incomingFiles)
@@ -49,7 +57,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
       }))
 
       try {
-        const result = await convertImage(file.originalFile, get().outputFormat)
+        const result = await convertImage(file.originalFile, get().outputFormat || 'image/png')
 
         set((state) => ({
           files: state.files.map((f) =>
@@ -67,7 +75,15 @@ export const useFileStore = create<FileStore>((set, get) => ({
       }
     }
 
+    const finalFiles = get().files
+    const completedCount = finalFiles.filter((file) => file.status === 'completed').length
+    const totalFiles = finalFiles.length
+
     set({ isProcessing: false })
+
+    if (completedCount === totalFiles && totalFiles > 0) {
+      useToastStore.getState().showToast('Conversion complete!', 'success')
+    }
   },
 
   removeFile: (id) => {
@@ -79,12 +95,39 @@ export const useFileStore = create<FileStore>((set, get) => ({
       }
     }
 
-    set((state) => ({
-      files: state.files.filter((f) => f.id !== id),
-    }))
+    set((state) => {
+      const newFiles = state.files.filter((f) => f.id !== id)
+      if (newFiles.length === 0) {
+        return {
+          files: [],
+          activeMode: null,
+          outputFormat: null,
+          suggestedModes: [],
+        }
+      } else {
+        return {
+          files: newFiles,
+        }
+      }
+    })
   },
 
   setOutputFormat: (format) => set({ outputFormat: format }),
+
+  setActiveMode: (mode) => set({ activeMode: mode }),
+
+  setSuggestedModes: (modes) => set({ suggestedModes: modes }),
+
+  resetFileStatuses: () => {
+    set((state) => ({
+      files: state.files.map((file) => ({
+        ...file,
+        status: 'idle' as const,
+        result: null,
+        errorMessage: null,
+      })),
+    }))
+  },
 
   clearFiles: () => {
     get().files.forEach((file) => {
@@ -93,6 +136,6 @@ export const useFileStore = create<FileStore>((set, get) => ({
         URL.revokeObjectURL(file.result.url)
       }
     })
-    set({ files: [], isProcessing: false })
+    set({ files: [], isProcessing: false, activeMode: null, outputFormat: null })
   },
 }))
