@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { ACCEPTED_IMAGE_TYPES } from '@/lib/constants'
 import { useFileStore } from '@/core/store/useFileStore'
 import { useToastStore } from '@/core/store/useToastStore'
+import { preloadHeicTo } from '@/core/services/heicService'
 
 export function DropZone({ className }: { className?: string } = {}) {
   const files = useFileStore((state) => state.files)
@@ -18,21 +19,25 @@ export function DropZone({ className }: { className?: string } = {}) {
     const inputType = firstFile.type
     let suggestions: string[] = []
 
-    switch (inputType) {
-      case 'image/png':
-        suggestions = ['PNG to JPG', 'PNG to WebP']
-        break
-      case 'image/jpeg':
-        suggestions = ['JPG to PNG', 'JPG to WebP']
-        break
-      case 'image/webp':
-        suggestions = ['WebP to JPG', 'WebP to PNG']
-        break
-      case 'image/svg+xml':
-        suggestions = ['SVG to PNG', 'SVG to JPG']
-        break
-      default:
-        suggestions = []
+    if (inputType === 'image/heic' || firstFile.name.toLowerCase().endsWith('.heic')) {
+      suggestions = ['HEIC to JPG', 'HEIC to PNG']
+    } else {
+      switch (inputType) {
+        case 'image/png':
+          suggestions = ['PNG to JPG', 'PNG to WebP']
+          break
+        case 'image/jpeg':
+          suggestions = ['JPG to PNG', 'JPG to WebP']
+          break
+        case 'image/webp':
+          suggestions = ['WebP to JPG', 'WebP to PNG']
+          break
+        case 'image/svg+xml':
+          suggestions = ['SVG to PNG', 'SVG to JPG']
+          break
+        default:
+          suggestions = []
+      }
     }
 
     setSuggestedModes(suggestions)
@@ -40,10 +45,17 @@ export function DropZone({ className }: { className?: string } = {}) {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
-      console.log('--- DROP DEBUG START ---')
-      console.log('Raw Accepted Files:', acceptedFiles)
-      console.log('File Types Detected:', acceptedFiles.map(f => f.type))
-      console.log('Unique Types Set Size:', new Set(acceptedFiles.map(f => f.type)).size)
+      // Check if any HEIC files are present and preload the library
+      const hasHeicFiles = acceptedFiles.some(file =>
+        file.name.toLowerCase().endsWith('.heic') ||
+        file.name.toLowerCase().endsWith('.heif') ||
+        file.type.includes('heic')
+      )
+
+      if (hasHeicFiles) {
+        // Preload heic-to in the background for better UX
+        preloadHeicTo().catch(console.warn)
+      }
 
       const existingTypes = files.map(file => file.originalFile.type)
       const incomingTypes = acceptedFiles.map(file => file.type)

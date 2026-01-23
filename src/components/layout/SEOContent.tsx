@@ -8,7 +8,7 @@ export function SEOContent() {
           Secure Image Conversion
         </h2>
         <p className="text-slate-600 leading-7 mb-4">
-          This powerful online tool allows you to convert images between popular formats like JPG, PNG, and WebP directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Experience fast, secure image conversion with full offline capability.
+          This powerful online tool allows you to convert images between all popular formats including JPG, PNG, WebP, SVG, and HEIC directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. Experience intelligent format suggestions, audio completion cues, and seamless social sharing. Our smart system automatically detects your file types and suggests optimal conversion options with visual feedback. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Enjoy fast, secure image conversion with full offline capability and modern UX enhancements.
         </p>
       </section>
 
@@ -88,7 +88,7 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to Convert PNG Images
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -97,7 +97,7 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to Convert WebP Images
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -106,7 +106,7 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to Convert SVG Images
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -115,7 +115,16 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+              How to Convert HEIC Images
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              HEIC is Apple's modern image format used by iPhones. Our converter processes HEIC files locally in your browser, converting them to standard JPG or PNG formats compatible with all devices and web platforms.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to convert JPG to PNG?
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -124,7 +133,7 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to convert PNG to JPG?
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -133,7 +142,7 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to convert WebP to JPG?
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
@@ -142,12 +151,30 @@ export function SEOContent() {
             </div>
           </details>
           <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
               How to turn SVG into PNG?
               <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
             </summary>
             <div className="py-4 text-slate-600 text-sm leading-relaxed">
               Drop your vector SVG. The browser renders it at high resolution and captures it as a transparent PNG bitmap.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+              How to convert HEIC to JPG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Select "HEIC to JPG" from the conversion options, then drag your HEIC photos from your iPhone or Apple device. The converter will decode the modern HEIC format and save as a widely compatible JPG file.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+              How to convert HEIC to PNG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Choose "HEIC to PNG" for lossless conversion. Upload your HEIC images and they'll be converted to PNG format while preserving all image data and supporting transparency if present.
             </div>
           </details>
         </div>

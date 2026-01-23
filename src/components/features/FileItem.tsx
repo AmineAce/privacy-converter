@@ -1,4 +1,4 @@
-import { Loader2, X } from 'lucide-react'
+import { Loader2, X, FileImage } from 'lucide-react'
 import type { ImageJob } from '@/core/types/core'
 import { useFileStore } from '@/core/store/useFileStore'
 
@@ -8,6 +8,8 @@ interface FileItemProps {
 
 export function FileItem({ job }: FileItemProps) {
   const removeFile = useFileStore((state) => state.removeFile)
+
+  const isHeic = job.originalFile.name.toLowerCase().endsWith('.heic') || job.originalFile.type.includes('heic')
 
   const formatSize = (bytes: number) => {
     if (bytes === 0) return '0 Bytes'
@@ -19,11 +21,17 @@ export function FileItem({ job }: FileItemProps) {
 
   return (
     <div className="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-      <img
-        src={job.originalPreview}
-        alt={job.originalFile.name}
-        className="w-16 h-16 object-cover rounded border border-slate-200"
-      />
+      {isHeic ? (
+        <div className="w-16 h-16 bg-slate-100 flex items-center justify-center rounded border border-slate-200">
+          <FileImage className="w-8 h-8 text-slate-400" />
+        </div>
+      ) : (
+        <img
+          src={job.originalPreview}
+          alt={job.originalFile.name}
+          className="w-16 h-16 object-cover rounded border border-slate-200"
+        />
+      )}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium text-gray-900 truncate">
           {job.originalFile.name}

@@ -16,6 +16,8 @@ export function ConversionNav() {
     { label: 'PNG to WebP', format: 'image/webp' as const },
     { label: 'SVG to PNG', format: 'image/png' as const },
     { label: 'SVG to JPG', format: 'image/jpeg' as const },
+    { label: 'HEIC to JPG', format: 'image/jpeg' as const },
+    { label: 'HEIC to PNG', format: 'image/png' as const },
   ]
 
   return (
