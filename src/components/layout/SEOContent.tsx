@@ -75,6 +75,86 @@ export function SEOContent() {
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Conversion Guides
+        </h2>
+        <div className="space-y-2">
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+              How to Convert JPG Images
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              JPG files are perfect for photographs and web images. To convert JPG files, simply drag and drop them into the converter. Choose your desired output format (PNG for lossless quality or WebP for modern compression) and click convert. JPG to PNG conversion preserves all image data, while JPG to WebP offers superior compression.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to Convert PNG Images
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              PNG files maintain transparency and use lossless compression. Convert PNG to JPG for smaller file sizes suitable for web use, or PNG to WebP for modern web optimization. PNG files are ideal for graphics with transparency like logos and icons.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to Convert WebP Images
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              WebP is Google's modern image format offering superior compression. Convert WebP to JPG for maximum compatibility, or WebP to PNG to preserve transparency. WebP files provide smaller sizes than JPG and PNG while maintaining excellent quality.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to Convert SVG Images
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              SVG is a vector format perfect for logos and scalable graphics. Convert SVG to PNG for pixel-perfect rendering at any size, or SVG to JPG for photographs. SVG files are infinitely scalable and great for web graphics.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to convert JPG to PNG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Upload your JPG file. The tool automatically processes the compression. Click Download to save as a lossless PNG.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to convert PNG to JPG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Select the PNG to JPG tab. Drag your PNG file. It will be converted to a smaller, high-quality JPG instantly.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to convert WebP to JPG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Drag your WebP images. Our engine decodes the modern WebP format and re-encodes it as a standard JPG compatible with all devices.
+            </div>
+          </details>
+          <details className="group">
+            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none">
+              How to turn SVG into PNG?
+              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+            </summary>
+            <div className="py-4 text-slate-600 text-sm leading-relaxed">
+              Drop your vector SVG. The browser renders it at high resolution and captures it as a transparent PNG bitmap.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
           Why do we have ads?
         </h2>
         <p className="text-slate-600 leading-7 mb-4">
