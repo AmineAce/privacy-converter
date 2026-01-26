@@ -172,6 +172,13 @@ export const useFileStore = create<FileStore>((set, get) => ({
         URL.revokeObjectURL(file.result.url)
       }
     })
-    set({ files: [], isProcessing: false, activeMode: null, outputFormat: null, mergedPdf: null })
+    set({ 
+      files: [], 
+      isProcessing: false, 
+      activeMode: null, 
+      outputFormat: null, 
+      suggestedModes: [],
+      mergedPdf: null 
+    })
   },
 }))

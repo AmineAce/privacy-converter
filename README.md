@@ -1,6 +1,6 @@
 # Secure Converter
 
-A privacy-first, client-side image transformation tool.
+The privacy-first, client-side file manipulation tool.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React + Vite](https://img.shields.io/badge/React%20%2B%20Vite-18.2.0%20%2B%204.3.9-blue.svg)](https://reactjs.org/)
@@ -12,22 +12,22 @@ A privacy-first, client-side image transformation tool.
 
 ## Why
 
-Modern image converters are often bloated with ads, trackers, and upload your files to servers for processing, compromising your privacy. This tool was built to solve that problem by keeping all processing in the browser memory using the HTML5 Canvas API - your images never leave your device.
+Modern file converters are privacy nightmares - they're bloated with ads, trackers, and upload your files to remote servers for processing, compromising your privacy and security. This tool was built to solve that problem by running 100% in your browser using WebAssembly and Canvas technology. Your files never leave your device, ensuring complete privacy and security.
 
 ## Features
 
-- **Strictly Local**: Zero server uploads. Files never leave the device.
-- **Universal Input**: Supports JPG, PNG, WebP, SVG, HEIC, and PDF (Apple format).
-- **Multi-Format Output**: Convert to JPG, PNG, WebP, or PDF.
-- **No File Limits**: Process files of any size (1GB+). Since data stays local, there are no server bandwidth caps or upload restrictions.
-- **Clean UI**: Ad-supported but non-intrusive (Symmetrical Layout).
+- ✅ **Universal Conversion**: Support for JPG, PNG, WebP, SVG, and HEIC (iPhone).
+- ✅ **PDF Tools**: Convert images to PDF and Merge multiple images into a single PDF document.
+- ✅ **Zero Limits**: No file size limits (process 1GB+ files locally).
+- ✅ **Batch Engine**: Parallel processing for unlimited files.
+- ✅ **Strict Privacy**: No data collection, no server storage.
 
 ## Tech Stack
 
-- **Vite 6** (Build Tool)
-- **React + TypeScript** (Framework)
-- **Zustand** (State Management)
-- **Tailwind CSS** (Styling)
+- **Frontend**: React + TypeScript + Vite 6
+- **State**: Zustand (with atomic selectors)
+- **Engine**: HTML5 Canvas + jspdf + heic2any (lazy loaded)
+- **Styling**: Tailwind CSS
 
 ## Running Locally
 
@@ -36,4 +36,3 @@ git clone https://github.com/AmineAce/privacy-converter.git
 cd privacy-converter
 npm install
 npm run dev
-```
