@@ -8,7 +8,7 @@ export function SEOContent() {
           Secure Image Conversion
         </h2>
         <p className="text-slate-600 leading-7 mb-4">
-          This powerful online tool allows you to convert images between all popular formats including JPG, PNG, WebP, SVG, HEIC, and PDF directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. Experience intelligent format suggestions, audio completion cues, and seamless social sharing. Our smart system automatically detects your file types and suggests optimal conversion options with visual feedback. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Enjoy fast, secure image conversion with full offline capability and modern UX enhancements.
+          This powerful online tool allows you to convert images between all popular formats including JPG, PNG, WebP, SVG, HEIC, and PDF directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. Experience intelligent format suggestions, audio completion cues, and seamless social sharing. Our smart system automatically detects your file types and suggests optimal conversion options with visual feedback. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Enjoy fast, secure image conversion with high performance and modern UX enhancements.
         </p>
       </section>
 
@@ -21,7 +21,7 @@ export function SEOContent() {
             <strong>Zero Server Uploads:</strong> Your images never leave your device. All processing happens client-side, ensuring complete privacy and security.
           </li>
           <li>
-            <strong>Offline Capable:</strong> Works without an internet connection. Convert images anywhere, anytime, with full functionality offline.
+            <strong>High Performance:</strong> Process files of any size with unlimited batching. Since data stays local, there are no server bandwidth caps or upload restrictions.
           </li>
           <li>
             <strong>Bulk Processing:</strong> Convert multiple images at once. Select multiple files and process them all in a single batch operation.
@@ -46,7 +46,7 @@ export function SEOContent() {
           Why Convert Locally?
         </h2>
         <p className="text-slate-600 leading-7 mb-4">
-          Most online image converters require you to upload your files to remote cloud servers, creating significant privacy risks. Sensitive documents, personal photos, business files, and confidential data could be intercepted, stored without permission, or exposed to data breaches. Our solution processes everything directly in your browser using advanced WebAssembly technology. Your files never leave your device, ensuring complete privacy and security while maintaining full offline functionality - no internet connection required.
+          Most online image converters require you to upload your files to remote cloud servers, creating significant privacy risks. Sensitive documents, personal photos, business files, and confidential data could be intercepted, stored without permission, or exposed to data breaches. Our solution processes everything directly in your browser using advanced WebAssembly technology. Your files never leave your device, ensuring complete privacy and security while enabling unlimited file processing without server bandwidth limitations.
         </p>
       </section>
 

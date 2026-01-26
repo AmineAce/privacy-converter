@@ -25,6 +25,14 @@ export function FileList() {
   }, [])
 
   useEffect(() => {
+    // Pre-load the delete confirmation audio
+    const deleteAudio = new Audio('/delete.mp3')
+    if (deleteAudio) {
+      deleteAudio.volume = 0.40
+    }
+  }, [])
+
+  useEffect(() => {
     if (isConfirming) {
       const timeout = setTimeout(() => setIsConfirming(false), 3000)
       return () => clearTimeout(timeout)
@@ -48,6 +56,11 @@ export function FileList() {
     if (!isConfirming) {
       setIsConfirming(true)
     } else {
+      // Pre-load and play delete confirmation audio
+      const deleteAudio = new Audio('/delete.mp3')
+      deleteAudio.volume = 0.40
+      deleteAudio.play().catch((error) => console.error('Failed to play delete audio:', error))
+      
       clearFiles()
       setIsConfirming(false)
     }
@@ -91,7 +104,7 @@ export function FileList() {
             className="bg-rose-600 text-white hover:bg-rose-700 shadow-sm shadow-rose-200"
           >
             <FileStack className="w-4 h-4 mr-2" />
-            Merge to PDF
+            Merge to One PDF
           </Button>
         )}
         {showZipButton && (

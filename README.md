@@ -17,9 +17,9 @@ Modern image converters are often bloated with ads, trackers, and upload your fi
 ## Features
 
 - **Strictly Local**: Zero server uploads. Files never leave the device.
-- **Universal Input**: Supports JPG, PNG, WebP, SVG, and HEIC (Apple format).
-- **Multi-Format Output**: Convert to JPG, PNG, or WebP.
-- **Batch Engine**: Process unlimited files simultaneously.
+- **Universal Input**: Supports JPG, PNG, WebP, SVG, HEIC, and PDF (Apple format).
+- **Multi-Format Output**: Convert to JPG, PNG, WebP, or PDF.
+- **No File Limits**: Process files of any size (1GB+). Since data stays local, there are no server bandwidth caps or upload restrictions.
 - **Clean UI**: Ad-supported but non-intrusive (Symmetrical Layout).
 
 ## Tech Stack
