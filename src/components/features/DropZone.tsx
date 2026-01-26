@@ -24,13 +24,13 @@ export function DropZone({ className }: { className?: string } = {}) {
     } else {
       switch (inputType) {
         case 'image/png':
-          suggestions = ['PNG to JPG', 'PNG to WebP']
+          suggestions = ['PNG to JPG', 'PNG to WebP', 'PNG to PDF']
           break
         case 'image/jpeg':
-          suggestions = ['JPG to PNG', 'JPG to WebP']
+          suggestions = ['JPG to PNG', 'JPG to WebP', 'JPG to PDF']
           break
         case 'image/webp':
-          suggestions = ['WebP to JPG', 'WebP to PNG']
+          suggestions = ['WebP to JPG', 'WebP to PNG', 'WebP to PDF']
           break
         case 'image/svg+xml':
           suggestions = ['SVG to PNG', 'SVG to JPG']

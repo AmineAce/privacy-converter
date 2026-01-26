@@ -1,7 +1,23 @@
 import type { ConvertedFile, OutputFormat } from '../types/core'
 import { processHeicFile } from '../services/heicService'
+import { convertToPdf } from '../services/pdfService'
 
 export function convertImage(file: File, format: OutputFormat): Promise<ConvertedFile> {
+  // Handle PDF conversion
+  if (format === 'application/pdf') {
+    return convertToPdf(file)
+      .then((blob) => {
+        const url = URL.createObjectURL(blob)
+        const name = file.name.replace(/\.[^/.]+$/, '.pdf')
+
+        return {
+          blob,
+          url,
+          name,
+        }
+      })
+  }
+
   // Handle HEIC files by converting directly to target format
   if (file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif') || file.type.includes('heic')) {
     return processHeicFile(file, format)
