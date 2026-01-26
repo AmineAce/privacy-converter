@@ -26,7 +26,7 @@ Modern file converters are privacy nightmares - they're bloated with ads, tracke
 
 - **Frontend**: React + TypeScript + Vite 6
 - **State**: Zustand (with atomic selectors)
-- **Engine**: HTML5 Canvas + jspdf + heic2any (lazy loaded)
+- **Engine**: HTML5 Canvas + jspdf + heic-to (lazy loaded)
 - **Styling**: Tailwind CSS
 
 ## Running Locally
