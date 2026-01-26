@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import type { ImageJob, OutputFormat } from '@/core/types/core'
 import { validateFile } from '@/lib/validation'
 import { convertImage } from '@/core/engine/converter'
+import { mergeImagesToPdf } from '@/core/services/pdfService'
 import { useToastStore } from './useToastStore'
 
 interface FileStore {
@@ -10,12 +11,14 @@ interface FileStore {
   activeMode: string | null
   outputFormat: OutputFormat | null
   suggestedModes: string[]
+  mergedPdf: Blob | null
   addFiles: (incomingFiles: File[]) => void
   startConversion: () => Promise<void>
   removeFile: (id: string) => void
   setOutputFormat: (format: OutputFormat) => void
   setActiveMode: (mode: string | null) => void
   setSuggestedModes: (modes: string[]) => void
+  mergeToPdf: () => Promise<void>
   resetFileStatuses: () => void
   clearFiles: () => void
 }
@@ -26,6 +29,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
   activeMode: null,
   outputFormat: null,
   suggestedModes: [],
+  mergedPdf: null,
 
   addFiles: (incomingFiles) => {
     console.log('files sent to store', incomingFiles)
@@ -129,6 +133,38 @@ export const useFileStore = create<FileStore>((set, get) => ({
     }))
   },
 
+  mergeToPdf: async () => {
+    set({ isProcessing: true })
+
+    try {
+      // Extract raw File objects from the files state array
+      const rawFiles = get().files.map((job) => job.originalFile)
+
+      // Call the PDF merging service
+      const mergedPdfBlob = await mergeImagesToPdf(rawFiles)
+
+      // Create download link and trigger download
+      const url = URL.createObjectURL(mergedPdfBlob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'merged_document.pdf'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+
+      // Trigger success toast
+      useToastStore.getState().showToast('Merged PDF downloaded!', 'success')
+    } catch (error) {
+      // Trigger error toast if it fails
+      useToastStore.getState().showToast(`PDF merge failed: ${(error as Error).message}`, 'error')
+      throw error
+    } finally {
+      // Always set isProcessing to false
+      set({ isProcessing: false })
+    }
+  },
+
   clearFiles: () => {
     get().files.forEach((file) => {
       URL.revokeObjectURL(file.originalPreview)
@@ -136,6 +172,6 @@ export const useFileStore = create<FileStore>((set, get) => ({
         URL.revokeObjectURL(file.result.url)
       }
     })
-    set({ files: [], isProcessing: false, activeMode: null, outputFormat: null })
+    set({ files: [], isProcessing: false, activeMode: null, outputFormat: null, mergedPdf: null })
   },
 }))

@@ -3,7 +3,7 @@ import { FileItem } from './FileItem'
 import { Button } from '@/ui/primitives/Button'
 import { useFileStore } from '@/core/store/useFileStore'
 import { downloadAllAsZip } from '@/lib/zip'
-import { Download, Trash2, AlertTriangle } from 'lucide-react'
+import { Download, Trash2, AlertTriangle, FileStack } from 'lucide-react'
 
 export function FileList() {
   const [isConfirming, setIsConfirming] = useState(false)
@@ -12,6 +12,7 @@ export function FileList() {
   const outputFormat = useFileStore((state) => state.outputFormat)
   const startConversion = useFileStore((state) => state.startConversion)
   const clearFiles = useFileStore((state) => state.clearFiles)
+  const mergeToPdf = useFileStore((state) => state.mergeToPdf)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const prevIsProcessingRef = useRef(false)
 
@@ -41,6 +42,7 @@ export function FileList() {
 
   const completedCount = files.filter((file) => file.status === 'completed').length
   const showZipButton = !isProcessing && completedCount > 2
+  const showMergeButton = outputFormat === 'application/pdf' && files.length > 1
 
   const handleClearClick = () => {
     if (!isConfirming) {
@@ -81,6 +83,17 @@ export function FileList() {
         >
           {isProcessing ? 'Converting...' : 'Convert'}
         </Button>
+        {showMergeButton && (
+          <Button
+            onClick={() => mergeToPdf()}
+            disabled={isProcessing}
+            size="lg"
+            className="bg-rose-600 text-white hover:bg-rose-700 shadow-sm shadow-rose-200"
+          >
+            <FileStack className="w-4 h-4 mr-2" />
+            Merge to PDF
+          </Button>
+        )}
         {showZipButton && (
           <Button
             onClick={handleDownloadAll}
