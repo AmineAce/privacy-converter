@@ -13,7 +13,7 @@ export function Footer() {
             href="https://github.com/AmineAce/privacy-converter"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-1"
+            className="text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1"
           >
             <Github className="w-5 h-5" />
             <span className="text-sm">Github</span>
@@ -22,7 +22,7 @@ export function Footer() {
             href="https://lucide.dev"
             target="_blank"
             rel="noreferrer"
-            className="text-xs text-slate-400 hover:text-slate-600 transition-colors"
+            className="text-xs text-slate-500 hover:text-slate-900 transition-colors"
           >
             Icons by Lucide
           </a>

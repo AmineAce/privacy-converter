@@ -14,6 +14,5 @@ if ('serviceWorker' in navigator) {
     registrations.forEach(registration => {
       registration.unregister()
     })
-    console.log('Service Worker unregistered')
   })
 }
