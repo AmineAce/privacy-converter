@@ -22,6 +22,12 @@ Modern file converters are privacy nightmares - they're bloated with ads, tracke
 - ✅ **Batch Engine**: Parallel processing for unlimited files.
 - ✅ **Strict Privacy**: No data collection, no server storage.
 
+## ⚡ 100/100 Performance
+
+![Perfect Lighthouse Score](./public/lighthouse-score.png)
+
+Secure Converter is optimized for speed. By running entirely client-side and using lazy-loading for heavy modules (HEIC/PDF), we achieve perfect Lighthouse scores across Performance, Accessibility, Best Practices, and SEO.
+
 ## Tech Stack
 
 - **Frontend**: React + TypeScript + Vite 6
