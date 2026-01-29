@@ -1,9 +1,12 @@
 import { create } from 'zustand'
 import type { ImageJob, OutputFormat } from '@/core/types/core'
 import { validateFile } from '@/lib/validation'
-import { convertImage } from '@/core/engine/converter'
+import { processHeicFile } from '@/core/services/heicService'
 import { mergeImagesToPdf } from '@/core/services/pdfService'
 import { useToastStore } from './useToastStore'
+
+// Define concurrency limit for batch processing
+const MAX_CONCURRENT = 5
 
 interface FileStore {
   files: ImageJob[]
@@ -12,6 +15,7 @@ interface FileStore {
   outputFormat: OutputFormat | null
   suggestedModes: string[]
   mergedPdf: Blob | null
+  totalProgress: number
   addFiles: (incomingFiles: File[]) => void
   startConversion: () => Promise<void>
   removeFile: (id: string) => void
@@ -30,10 +34,9 @@ export const useFileStore = create<FileStore>((set, get) => ({
   outputFormat: null,
   suggestedModes: [],
   mergedPdf: null,
+  totalProgress: 0,
 
   addFiles: (incomingFiles) => {
-    console.log('files sent to store', incomingFiles)
-
     const validFiles = incomingFiles.filter((file) => validateFile(file).isValid)
 
     const newJobs: ImageJob[] = validFiles.map((file) => ({
@@ -52,8 +55,24 @@ export const useFileStore = create<FileStore>((set, get) => ({
     set({ isProcessing: true })
 
     const idleFiles = get().files.filter((file) => file.status === 'idle')
+    const totalFiles = idleFiles.length
 
-    for (const file of idleFiles) {
+    // Reset progress to 0 at the start
+    set({ totalProgress: 0 })
+
+    // Separate HEIC files from regular image files
+    const heicFiles = idleFiles.filter(file => 
+      file.originalFile.name.toLowerCase().endsWith('.heic') ||
+      file.originalFile.name.toLowerCase().endsWith('.heif') ||
+      file.originalFile.type.includes('heic')
+    )
+    const regularFiles = idleFiles.filter(file => !heicFiles.includes(file))
+
+    // Track completed files for accurate progress calculation
+    let completedInThisSession = 0
+
+    // Process HEIC files on main thread (they require the heic-to library)
+    for (const file of heicFiles) {
       set((state) => ({
         files: state.files.map((f) =>
           f.id === file.id ? { ...f, status: 'processing' as const } : f
@@ -61,13 +80,31 @@ export const useFileStore = create<FileStore>((set, get) => ({
       }))
 
       try {
-        const result = await convertImage(file.originalFile, get().outputFormat || 'image/png')
+        const result = await processHeicFile(file.originalFile, get().outputFormat || 'image/png')
+
+        const url = URL.createObjectURL(result)
+        let extension = '.png'
+        if (get().outputFormat === 'image/jpeg') extension = '.jpg'
+        else if (get().outputFormat === 'image/webp') extension = '.webp'
+        
+        const name = file.originalFile.name.replace(/\.[^/.]+$/, extension)
+
+        const convertedResult = {
+          blob: result,
+          url,
+          name
+        }
 
         set((state) => ({
           files: state.files.map((f) =>
-            f.id === file.id ? { ...f, status: 'completed' as const, result } : f
+            f.id === file.id ? { ...f, status: 'completed' as const, result: convertedResult } : f
           ),
         }))
+
+        // Update progress after each file completes
+        completedInThisSession++
+        const progress = Math.round((completedInThisSession / totalFiles) * 100)
+        set({ totalProgress: progress })
       } catch (error) {
         set((state) => ({
           files: state.files.map((f) =>
@@ -76,16 +113,148 @@ export const useFileStore = create<FileStore>((set, get) => ({
               : f
           ),
         }))
+
+        // Update progress after each file completes (including errors)
+        completedInThisSession++
+        const progress = Math.round((completedInThisSession / totalFiles) * 100)
+        set({ totalProgress: progress })
       }
     }
+    
+    // Check if all HEIC files are completed - use state from store
+    const currentState = get()
+    const heicCompletedCount = heicFiles.filter(f => currentState.files.find(cf => cf.id === f.id)?.status === 'completed').length
+    if (heicCompletedCount === heicFiles.length && heicFiles.length > 0) {
+      useToastStore.getState().showToast('HEIC conversion complete!', 'success')
+    }
 
-    const finalFiles = get().files
-    const completedCount = finalFiles.filter((file) => file.status === 'completed').length
-    const totalFiles = finalFiles.length
+    // Process regular image files with Web Worker using pool-based approach
+    if (regularFiles.length > 0) {
+      // Create a queue of files to process
+      const fileQueue = [...regularFiles]
+      let activeWorkers = 0
+      let completedCount = 0
+      let errorCount = 0
 
-    set({ isProcessing: false })
+      // Create a single persistent worker for the pool
+      const worker = new Worker(new URL('../engine/conversion.worker.ts', import.meta.url), {
+        type: 'module'
+      })
 
-    if (completedCount === totalFiles && totalFiles > 0) {
+      // Pool worker function that processes files from the queue
+      const processNextFile = async () => {
+        if (fileQueue.length === 0) return
+
+        const file = fileQueue.shift()!
+        activeWorkers++
+
+        set((state) => ({
+          files: state.files.map((f) =>
+            f.id === file.id ? { ...f, status: 'processing' as const } : f
+          ),
+        }))
+
+        // Send conversion job to worker
+        worker.postMessage({
+          id: file.id,
+          file: file.originalFile,
+          format: get().outputFormat || 'image/png'
+        })
+      }
+
+      // Handle worker responses
+      worker.onmessage = (event: MessageEvent) => {
+        const { id, success, blob, name, error } = event.data
+        activeWorkers--
+
+        if (success) {
+          // Create object URL for the blob
+          const url = URL.createObjectURL(blob)
+          const result = {
+            blob,
+            url,
+            name
+          }
+
+          set((state) => ({
+            files: state.files.map((f) =>
+              f.id === id ? { ...f, status: 'completed' as const, result } : f
+            ),
+          }))
+
+          completedCount++
+          completedInThisSession++
+          
+          // Calculate progress for regular files - ensure accurate progress updates
+          const progress = Math.round((completedInThisSession / totalFiles) * 100)
+          set({ totalProgress: progress })
+        } else {
+          set((state) => ({
+            files: state.files.map((f) =>
+              f.id === id
+                ? { ...f, status: 'error' as const, errorMessage: error }
+                : f
+            ),
+          }))
+
+          errorCount++
+          completedInThisSession++
+          
+          // Calculate progress for regular files (including errors) - ensure accurate progress updates
+          const progress = Math.round((completedInThisSession / totalFiles) * 100)
+          set({ totalProgress: progress })
+        }
+
+        // Check if all files are processed - ensure isProcessing only turns false when entire queue is empty
+        if (completedCount + errorCount === regularFiles.length) {
+          worker.terminate()
+          set({ isProcessing: false })
+
+          // Ensure progress is explicitly set to 100 when all files are processed
+          set({ totalProgress: 100 })
+          
+          const totalCompleted = completedCount + heicFiles.filter(f => f.status === 'completed').length
+          const totalFiles = idleFiles.length
+          
+          if (totalCompleted === totalFiles && totalFiles > 0) {
+            useToastStore.getState().showToast('Conversion complete!', 'success')
+          }
+        } else {
+          // Launch next file if queue is not empty and we have capacity - dynamic slot management
+          if (fileQueue.length > 0 && activeWorkers < MAX_CONCURRENT) {
+            processNextFile()
+          }
+        }
+      }
+
+      worker.onerror = (error) => {
+        worker.terminate()
+        set({ isProcessing: false })
+        useToastStore.getState().showToast(`Worker error: ${error.message || 'Unknown error'}`, 'error')
+      }
+
+      // Launch initial pool of workers (up to MAX_CONCURRENT or fileQueue.length, whichever is smaller)
+      const initialWorkers = Math.min(MAX_CONCURRENT, fileQueue.length)
+      for (let i = 0; i < initialWorkers; i++) {
+        processNextFile()
+      }
+    } else {
+      // Only HEIC files were processed - ensure proper state management
+      set({ isProcessing: false })
+      // Ensure progress is explicitly set to 100 when all files are processed
+      set({ totalProgress: 100 })
+      const totalCompleted = heicFiles.filter(f => f.status === 'completed').length
+      if (totalCompleted === heicFiles.length && heicFiles.length > 0) {
+        useToastStore.getState().showToast('Conversion complete!', 'success')
+      }
+    }
+    
+    // Check if all files are completed (both HEIC and regular files)
+    const finalTotalCompleted = heicFiles.filter(f => f.status === 'completed').length + 
+                               get().files.filter(f => f.status === 'completed' && heicFiles.every(hf => hf.id !== f.id)).length
+    const finalTotalFiles = idleFiles.length
+    
+    if (finalTotalCompleted === finalTotalFiles && finalTotalFiles > 0) {
       useToastStore.getState().showToast('Conversion complete!', 'success')
     }
   },
@@ -178,7 +347,8 @@ export const useFileStore = create<FileStore>((set, get) => ({
       activeMode: null, 
       outputFormat: null, 
       suggestedModes: [],
-      mergedPdf: null 
+      mergedPdf: null,
+      totalProgress: 0
     })
   },
 }))

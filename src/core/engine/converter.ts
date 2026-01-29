@@ -2,6 +2,11 @@ import type { ConvertedFile, OutputFormat } from '../types/core'
 import { processHeicFile } from '../services/heicService'
 import { convertToPdf } from '../services/pdfService'
 
+// Initialize a single persistent Web Worker instance at the top level
+const worker = new Worker(new URL('./conversion.worker.ts', import.meta.url), {
+  type: 'module'
+})
+
 export function convertImage(file: File, format: OutputFormat): Promise<ConvertedFile> {
   // Handle PDF conversion
   if (format === 'application/pdf') {
@@ -35,59 +40,58 @@ export function convertImage(file: File, format: OutputFormat): Promise<Converte
         }
       })
   }
+
+  // Handle standard image processing via Web Worker
   return new Promise((resolve, reject) => {
-    createImageBitmap(file)
-      .then((bitmap) => {
-        let canvas: HTMLCanvasElement | OffscreenCanvas
+    // Create a unique ID for this conversion request
+    const requestId = crypto.randomUUID()
 
-        if (typeof OffscreenCanvas !== 'undefined') {
-          canvas = new OffscreenCanvas(bitmap.width, bitmap.height)
+    // Set up message handler for this specific request
+    const handleMessage = (event: MessageEvent) => {
+      const { id, success, blob, name, error } = event.data
+
+      if (id === requestId) {
+        // Clean up the event listener after receiving the response
+        worker.removeEventListener('message', handleMessage)
+        worker.removeEventListener('error', errorHandler)
+        clearTimeout(timeoutId)
+
+        if (success) {
+          const url = URL.createObjectURL(blob)
+          resolve({
+            blob,
+            url,
+            name,
+          })
         } else {
-          canvas = document.createElement('canvas')
-          canvas.width = bitmap.width
-          canvas.height = bitmap.height
+          reject(new Error(error || 'Failed to convert image'))
         }
+      }
+    }
 
-        const ctx = canvas.getContext('2d')
-        if (!ctx) {
-          reject(new Error('Canvas context not available'))
-          return
-        }
+    // Set up error handler
+    const errorHandler = (error: ErrorEvent) => {
+      worker.removeEventListener('message', handleMessage)
+      worker.removeEventListener('error', errorHandler)
+      clearTimeout(timeoutId)
+      reject(new Error('Worker error: ' + error.message))
+    }
 
-        ctx.drawImage(bitmap, 0, 0)
+    // Set up timeout to prevent hanging requests (30 second timeout)
+    const timeoutId = setTimeout(() => {
+      worker.removeEventListener('message', handleMessage)
+      worker.removeEventListener('error', errorHandler)
+      reject(new Error('Image conversion timed out after 30 seconds'))
+    }, 30000)
 
-        const quality = (format === 'image/jpeg' || format === 'image/webp') ? 0.85 : undefined
+    worker.addEventListener('message', handleMessage)
+    worker.addEventListener('error', errorHandler)
 
-        const toBlob = (canvas: HTMLCanvasElement | OffscreenCanvas): Promise<Blob | null> => {
-          if (canvas instanceof OffscreenCanvas) {
-            return canvas.convertToBlob({ type: format, ...(quality && { quality }) })
-          } else {
-            return new Promise((resolve) => {
-              canvas.toBlob(resolve, format, quality)
-            })
-          }
-        }
-
-        return toBlob(canvas)
-      })
-      .then((blob) => {
-        if (!blob) {
-          reject(new Error('Failed to convert image'))
-          return
-        }
-
-        const url = URL.createObjectURL(blob)
-        let extension = '.png'
-        if (format === 'image/jpeg') extension = '.jpg'
-        else if (format === 'image/webp') extension = '.webp'
-        const name = file.name.replace(/\.[^/.]+$/, extension)
-
-        resolve({
-          blob,
-          url,
-          name,
-        })
-      })
-      .catch(reject)
+    // Send conversion job to worker
+    worker.postMessage({
+      id: requestId,
+      file: file,
+      format: format
+    })
   })
 }
