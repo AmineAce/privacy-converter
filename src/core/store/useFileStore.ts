@@ -62,7 +62,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
     set({ totalProgress: 0 })
 
     // Separate files by conversion type
-    const pdfFiles = idleFiles.filter(file => get().outputFormat === 'application/pdf')
+    const pdfFiles = idleFiles.filter(() => get().outputFormat === 'application/pdf')
     const heicFiles = idleFiles.filter(file => 
       (get().outputFormat !== 'application/pdf') &&
       (file.originalFile.name.toLowerCase().endsWith('.heic') ||
