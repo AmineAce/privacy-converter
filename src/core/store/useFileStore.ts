@@ -60,13 +60,65 @@ export const useFileStore = create<FileStore>((set, get) => ({
     // Reset progress to 0 at the start
     set({ totalProgress: 0 })
 
-    // Separate HEIC files from regular image files
+    // Check if we're converting to PDF - if so, handle all files on main thread
+    const isPdfConversion = get().outputFormat === 'application/pdf'
+    
+    if (isPdfConversion) {
+      // Handle PDF conversion for all files on main thread
+      for (const file of idleFiles) {
+        set((state) => ({
+          files: state.files.map((f) =>
+            f.id === file.id ? { ...f, status: 'processing' as const } : f
+          ),
+        }))
+
+        try {
+          // Import the convertImage function to handle PDF conversion
+          const { convertImage } = await import('@/core/engine/converter')
+          const result = await convertImage(file.originalFile, get().outputFormat!)
+
+          set((state) => ({
+            files: state.files.map((f) =>
+              f.id === file.id ? { ...f, status: 'completed' as const, result } : f
+            ),
+          }))
+
+          // Update progress after each file completes
+          const completedCount = idleFiles.filter(f => f.status === 'completed').length + 1
+          const progress = Math.round((completedCount / totalFiles) * 100)
+          set({ totalProgress: progress })
+        } catch (error) {
+          set((state) => ({
+            files: state.files.map((f) =>
+              f.id === file.id
+                ? { ...f, status: 'error' as const, errorMessage: (error as Error).message }
+                : f
+            ),
+          }))
+
+          // Update progress after each file completes (including errors)
+          const completedCount = idleFiles.filter(f => f.status === 'completed').length + 1
+          const progress = Math.round((completedCount / totalFiles) * 100)
+          set({ totalProgress: progress })
+        }
+      }
+      
+      set({ isProcessing: false })
+      set({ totalProgress: 100 })
+      useToastStore.getState().showToast('PDF conversion complete!', 'success')
+      return
+    }
+
+    // For non-PDF conversions, separate HEIC files, SVG files, and regular image files
     const heicFiles = idleFiles.filter(file => 
       file.originalFile.name.toLowerCase().endsWith('.heic') ||
       file.originalFile.name.toLowerCase().endsWith('.heif') ||
       file.originalFile.type.includes('heic')
     )
-    const regularFiles = idleFiles.filter(file => !heicFiles.includes(file))
+    const svgFiles = idleFiles.filter(file => 
+      file.originalFile.type === 'image/svg+xml'
+    )
+    const regularFiles = idleFiles.filter(file => !heicFiles.includes(file) && !svgFiles.includes(file))
 
     // Track completed files for accurate progress calculation
     let completedInThisSession = 0
@@ -126,6 +178,51 @@ export const useFileStore = create<FileStore>((set, get) => ({
     const heicCompletedCount = heicFiles.filter(f => currentState.files.find(cf => cf.id === f.id)?.status === 'completed').length
     if (heicCompletedCount === heicFiles.length && heicFiles.length > 0) {
       useToastStore.getState().showToast('HEIC conversion complete!', 'success')
+    }
+
+    // Process SVG files on main thread (they require special handling)
+    for (const file of svgFiles) {
+      set((state) => ({
+        files: state.files.map((f) =>
+          f.id === file.id ? { ...f, status: 'processing' as const } : f
+        ),
+      }))
+
+      try {
+        // Import the convertImage function to handle SVG conversion
+        const { convertImage } = await import('@/core/engine/converter')
+        const result = await convertImage(file.originalFile, get().outputFormat || 'image/png')
+
+        set((state) => ({
+          files: state.files.map((f) =>
+            f.id === file.id ? { ...f, status: 'completed' as const, result } : f
+          ),
+        }))
+
+        // Update progress after each file completes
+        completedInThisSession++
+        const progress = Math.round((completedInThisSession / totalFiles) * 100)
+        set({ totalProgress: progress })
+      } catch (error) {
+        set((state) => ({
+          files: state.files.map((f) =>
+            f.id === file.id
+              ? { ...f, status: 'error' as const, errorMessage: (error as Error).message }
+              : f
+          ),
+        }))
+
+        // Update progress after each file completes (including errors)
+        completedInThisSession++
+        const progress = Math.round((completedInThisSession / totalFiles) * 100)
+        set({ totalProgress: progress })
+      }
+    }
+    
+    // Check if all SVG files are completed - use state from store
+    const svgCompletedCount = svgFiles.filter(f => currentState.files.find(cf => cf.id === f.id)?.status === 'completed').length
+    if (svgCompletedCount === svgFiles.length && svgFiles.length > 0) {
+      useToastStore.getState().showToast('SVG conversion complete!', 'success')
     }
 
     // Process regular image files with Web Worker using pool-based approach
