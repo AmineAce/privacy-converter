@@ -53,15 +53,17 @@ export const useFileStore = create<FileStore>((set, get) => ({
   },
 
   startConversion: async () => {
+    console.log('🔧 startConversion called')
     set({ isProcessing: true })
 
     const idleFiles = get().files.filter((file) => file.status === 'idle')
     const totalFiles = idleFiles.length
+    console.log('📄 Total idle files:', totalFiles)
 
     // Reset progress to 0 at the start
     set({ totalProgress: 0 })
 
-    // Separate files by conversion type
+    // Separate files by conversion type - EXPLICIT QUEUE CLASSIFICATION
     const pdfFiles = idleFiles.filter(() => get().outputFormat === 'application/pdf')
     const heicFiles = idleFiles.filter(file => 
       (get().outputFormat !== 'application/pdf') &&
@@ -71,25 +73,38 @@ export const useFileStore = create<FileStore>((set, get) => ({
     )
     const svgFiles = idleFiles.filter(file => 
       (get().outputFormat !== 'application/pdf') &&
-      file.originalFile.type === 'image/svg+xml'
+      file.originalFile.type === 'image/svg+xml'  // EXPLICITLY ensure SVG files go to Main Thread Queue
     )
     const regularFiles = idleFiles.filter(file => 
       !pdfFiles.includes(file) && !heicFiles.includes(file) && !svgFiles.includes(file)
     )
 
+    console.log('📋 File separation:')
+    console.log('  PDF files:', pdfFiles.length)
+    console.log('  HEIC files:', heicFiles.length)
+    console.log('  SVG files:', svgFiles.length)
+    console.log('  Regular files:', regularFiles.length)
+    console.log('  Output format:', get().outputFormat)
+
     // Main thread queue management for PDF, HEIC, and SVG conversions
-    const mainThreadQueue = [...pdfFiles, ...heicFiles, ...svgFiles]
-    let activeMainThreadJobs = 0
+    const mainThreadQueue = [...pdfFiles, ...heicFiles, ...svgFiles]  // EXPLICIT Main Thread Queue
+    console.log('🚀 Main thread queue length:', mainThreadQueue.length)
+
+    // CREATE THE QUEUE MANAGEMENT LOGIC
+    const pendingFiles = [...mainThreadQueue]  // Shallow copy of the mainThreadQueue array
     let completedMainThreadJobs = 0
     let errorMainThreadJobs = 0
 
-    // Process main thread conversions with throttling
-    const processMainThreadFile = async () => {
-      if (mainThreadQueue.length === 0) return
+    // DEFINE THE 'WORKER' FUNCTION (Recursive Helper)
+    const processNextMainThreadJob = async () => {
+      // Base Case: If pendingFiles is empty, return immediately
+      if (pendingFiles.length === 0) return
 
-      const file = mainThreadQueue.shift()!
-      activeMainThreadJobs++
+      // Action: .shift() (remove) the next file from pendingFiles
+      const file = pendingFiles.shift()!
+      console.log('📁 Processing file:', file.originalFile.name, 'Type:', file.originalFile.type)
 
+      // State Update 1: Update this specific file's status to 'processing' (Green text)
       set((state) => ({
         files: state.files.map((f) =>
           f.id === file.id ? { ...f, status: 'processing' as const } : f
@@ -102,6 +117,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
         if (file.originalFile.name.toLowerCase().endsWith('.heic') || 
             file.originalFile.name.toLowerCase().endsWith('.heif') || 
             file.originalFile.type.includes('heic')) {
+          console.log('🖼️ Processing HEIC file:', file.originalFile.name)
           // HEIC conversion
           result = await processHeicFile(file.originalFile, get().outputFormat || 'image/png')
           const url = URL.createObjectURL(result)
@@ -111,15 +127,18 @@ export const useFileStore = create<FileStore>((set, get) => ({
           const name = file.originalFile.name.replace(/\.[^/.]+$/, extension)
           result = { blob: result, url, name }
         } else if (file.originalFile.type === 'image/svg+xml') {
+          console.log('🎨 Processing SVG file:', file.originalFile.name)
           // SVG conversion
           const { convertImage } = await import('@/core/engine/converter')
           result = await convertImage(file.originalFile, get().outputFormat || 'image/png')
         } else {
+          console.log('📄 Processing PDF file:', file.originalFile.name)
           // PDF conversion
           const { convertImage } = await import('@/core/engine/converter')
           result = await convertImage(file.originalFile, get().outputFormat!)
         }
 
+        // State Update 2: Update this specific file's status to 'completed' (or 'error') and save the result
         set((state) => ({
           files: state.files.map((f) =>
             f.id === file.id ? { ...f, status: 'completed' as const, result } : f
@@ -127,9 +146,11 @@ export const useFileStore = create<FileStore>((set, get) => ({
         }))
 
         completedMainThreadJobs++
+        console.log('✅ File completed, completed:', completedMainThreadJobs, 'errors:', errorMainThreadJobs)
         const progress = Math.round(((completedMainThreadJobs + errorMainThreadJobs) / totalFiles) * 100)
         set({ totalProgress: progress })
       } catch (error) {
+        console.error('❌ File failed:', file.originalFile.name, error)
         set((state) => ({
           files: state.files.map((f) =>
             f.id === file.id
@@ -139,21 +160,57 @@ export const useFileStore = create<FileStore>((set, get) => ({
         }))
 
         errorMainThreadJobs++
+        console.log('❌ Error count:', errorMainThreadJobs)
         const progress = Math.round(((completedMainThreadJobs + errorMainThreadJobs) / totalFiles) * 100)
         set({ totalProgress: progress })
-      } finally {
-        activeMainThreadJobs--
-        // Launch next file if queue is not empty and we have capacity - dynamic slot management
-        if (mainThreadQueue.length > 0 && activeMainThreadJobs < MAX_MAIN_THREAD_CONCURRENT) {
-          processMainThreadFile()
-        }
       }
+
+      // Recursion: await processNextMainThreadJob() (Call itself to grab the next file)
+      await processNextMainThreadJob()
     }
 
-    // Launch initial main thread jobs (up to MAX_MAIN_THREAD_CONCURRENT)
-    const initialMainThreadJobs = Math.min(MAX_MAIN_THREAD_CONCURRENT, mainThreadQueue.length)
-    for (let i = 0; i < initialMainThreadJobs; i++) {
-      processMainThreadFile()
+    // EXECUTE THE POOL
+    // Create an array of size Math.min(mainThreadQueue.length, MAX_MAIN_THREAD_CONCURRENT)
+    const initialWorkersCount = Math.min(mainThreadQueue.length, MAX_MAIN_THREAD_CONCURRENT)
+    console.log('🚀 Launching', initialWorkersCount, 'initial main thread workers')
+    const initialWorkers = Array(initialWorkersCount).fill(null).map(() => processNextMainThreadJob())
+
+    // The Barrier: await Promise.all() on this array of workers
+    await Promise.all(initialWorkers)
+    console.log('🎯 Main thread pool synchronization barrier crossed')
+
+    // Count successes and failures
+    const successfulConversions = completedMainThreadJobs
+    const failedConversions = errorMainThreadJobs
+
+    console.log('📊 Main thread results:')
+    console.log('  Successful:', successfulConversions)
+    console.log('  Failed:', failedConversions)
+
+    // Update progress to 100% for main thread conversions
+    if (mainThreadQueue.length > 0) {
+      set({ totalProgress: 100 })
+    }
+
+    // Show success sounds for main thread conversions if all succeeded
+    if (successfulConversions === mainThreadQueue.length && mainThreadQueue.length > 0) {
+      console.log('🎉 All main thread conversions succeeded!')
+      if (get().outputFormat === 'application/pdf') {
+        console.log('📢 Showing PDF success toast')
+        useToastStore.getState().showToast('PDF conversion complete!', 'success')
+      }
+      if (mainThreadQueue.some(f => 
+        f.originalFile.name.toLowerCase().endsWith('.heic') ||
+        f.originalFile.name.toLowerCase().endsWith('.heif') ||
+        f.originalFile.type.includes('heic')
+      )) {
+        console.log('📢 Showing HEIC success toast')
+        useToastStore.getState().showToast('HEIC conversion complete!', 'success')
+      }
+      if (mainThreadQueue.some(f => f.originalFile.type === 'image/svg+xml')) {
+        console.log('📢 Showing SVG success toast')
+        useToastStore.getState().showToast('SVG conversion complete!', 'success')
+      }
     }
 
     // Process regular image files with Web Worker using pool-based approach
@@ -211,7 +268,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
           }))
 
           completedCount++
-          const progress = Math.round(((completedMainThreadJobs + errorMainThreadJobs + completedCount + errorCount) / totalFiles) * 100)
+          const progress = Math.round(((successfulConversions + failedConversions + completedCount + errorCount) / totalFiles) * 100)
           set({ totalProgress: progress })
         } else {
           set((state) => ({
@@ -223,7 +280,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
           }))
 
           errorCount++
-          const progress = Math.round(((completedMainThreadJobs + errorMainThreadJobs + completedCount + errorCount) / totalFiles) * 100)
+          const progress = Math.round(((successfulConversions + failedConversions + completedCount + errorCount) / totalFiles) * 100)
           set({ totalProgress: progress })
         }
 
@@ -232,7 +289,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
           worker.terminate()
           
           // Check if all main thread jobs are also completed
-          if (completedMainThreadJobs + errorMainThreadJobs === mainThreadQueue.length + (totalFiles - idleFiles.length)) {
+          if (successfulConversions + failedConversions === mainThreadQueue.length) {
             set({ isProcessing: false })
             set({ totalProgress: 100 })
             useToastStore.getState().showToast('Conversion complete!', 'success')
@@ -257,12 +314,8 @@ export const useFileStore = create<FileStore>((set, get) => ({
         processNextFile()
       }
     } else {
-      // Only main thread conversions - check completion
-      if (completedMainThreadJobs + errorMainThreadJobs === mainThreadQueue.length) {
-        set({ isProcessing: false })
-        set({ totalProgress: 100 })
-        useToastStore.getState().showToast('Conversion complete!', 'success')
-      }
+      // Only main thread conversions - set isProcessing to false after main thread completes
+      set({ isProcessing: false })
     }
   },
 
