@@ -21,7 +21,7 @@ export function SEOContent() {
             <strong>Zero Server Uploads:</strong> Your images never leave your device. All processing happens client-side, ensuring complete privacy and security.
           </li>
           <li>
-            <strong>High Performance:</strong> Process files of any size with unlimited batching. Since data stays local, there are no server bandwidth caps or upload restrictions.
+            <strong>High Performance:</strong> Process files up to 50MB with unlimited batching. Since data stays local, there are no server bandwidth caps or upload restrictions.
           </li>
           <li>
             <strong>Bulk Processing:</strong> Convert multiple images at once. Select multiple files and process them all in a single batch operation.

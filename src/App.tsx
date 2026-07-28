@@ -7,11 +7,12 @@ import { Footer } from '@/components/layout/Footer'
 import { SEOContent } from '@/components/layout/SEOContent'
 import { Toast } from '@/components/common/Toast'
 import AdSpace from '@/components/features/AdSpace'
-
+import { ErrorBoundary } from "./components/common/ErrorBoundary";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <ErrorBoundary>
+      <div className="min-h-screen flex flex-col">
       <Toast />
       <Header />
       <main className="flex-1 flex">
@@ -39,8 +40,9 @@ function App() {
         </aside>
       </main>
       <Footer />
-    </div>
-  )
-}
+</div>
+      </ErrorBoundary>
+    )
+  }
 
 export default App

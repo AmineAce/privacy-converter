@@ -22,30 +22,11 @@ interface ConversionError {
   error: string
 }
 
-// Check if file is HEIC format
-function isHeicFile(file: File | Blob): boolean {
-  const name = (file as File).name || ''
-  const type = file.type || ''
-  
-  return name.toLowerCase().endsWith('.heic') ||
-         name.toLowerCase().endsWith('.heif') ||
-         type.includes('heic') ||
-         type.includes('heif')
-}
-
 self.onmessage = async function (event: MessageEvent<ConversionMessage>) {
-  const { id, file, format } = event.data
+    const { id, file, format } = event.data
 
   try {
-    // Handle HEIC files with special processing
-    if (isHeicFile(file)) {
-      // For HEIC files, we need to use the heic-to library
-      // Since we can't import modules directly in the worker message handler,
-      // we'll need to handle this differently
-      throw new Error('HEIC conversion requires main thread processing')
-    }
-
-    // Decode the image using createImageBitmap
+      // Decode the image using createImageBitmap
     const bitmap = await createImageBitmap(file)
 
     // Initialize OffscreenCanvas with image dimensions
@@ -90,14 +71,6 @@ self.onmessage = async function (event: MessageEvent<ConversionMessage>) {
     }
 
     self.postMessage(result)
-    
-    // CRITICAL: Clear object references to allow garbage collection
-    // The blob will be transferred to main thread, so we don't need to close it
-    // Clear local references to help garbage collection
-    result.blob = null as any // This will be transferred, so we clear the reference
-    result.name = ''
-    result.id = ''
-    
   } catch (error) {
     // Handle errors (corrupted files, unsupported formats, etc.)
     const errorMessage: ConversionError = {

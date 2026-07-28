@@ -17,6 +17,7 @@ export function FileList() {
   const totalProgress = useFileStore((state) => state.totalProgress)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const prevIsProcessingRef = useRef(false)
+  const [showAll, setShowAll] = useState(false)
 
   // Effects after hooks
   useEffect(() => {
@@ -105,7 +106,7 @@ export function FileList() {
           </div>
         )}
       </div>
-      <div className="sticky top-16 z-40 w-full bg-white/80 backdrop-blur-md py-4 mb-6 border-b border-slate-200 flex justify-center gap-4">
+      <div className="sticky top-16 z-30 w-full bg-white/80 backdrop-blur-md py-4 mb-6 border-b border-slate-200 flex justify-center gap-4">
         <Button
           onClick={handleClearClick}
           variant={isConfirming ? undefined : "outline"}
@@ -152,11 +153,22 @@ export function FileList() {
           </Button>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {files.slice(0, 10).map((job) => (
-          <FileItem key={job.id} job={job} />
-        ))}
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ contentVisibility: files.length > 20 ? 'auto' as const : undefined }}>
+          {(showAll ? files : files.slice(0, 10)).map((job) => (
+            <FileItem key={job.id} job={job} />
+          ))}
+        </div>
+        {files.length > 10 && (
+          <div className="flex justify-center mt-4">
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              variant="outline"
+              size="sm"
+            >
+              {showAll ? 'Show less' : `Show all ${files.length} files`}
+            </Button>
+          </div>
+        )}
     </div>
   )
 }

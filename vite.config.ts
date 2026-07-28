@@ -4,6 +4,10 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    sourcemap: false,
+      chunkSizeWarningLimit: 3000
+  },
   plugins: [
     react()
   ],

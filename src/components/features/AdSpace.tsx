@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface AdSpaceProps {
   imageSrc: string;
   linkUrl: string;

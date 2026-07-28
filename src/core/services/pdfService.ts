@@ -45,7 +45,8 @@ export async function convertToPdf(blob: File): Promise<Blob> {
   const base64 = await blobToBase64(blob)
 
   // Add image to PDF
-  doc.addImage(base64, 'JPEG', xOffset, yOffset, scaledWidth, scaledHeight)
+  const imgFormat = (blob.type === 'image/png') ? 'PNG' : (blob.type === 'image/webp') ? 'WEBP' : 'JPEG'
+  doc.addImage(base64, imgFormat, xOffset, yOffset, scaledWidth, scaledHeight)
 
   // Return as Blob
   return doc.output('blob')
@@ -107,7 +108,8 @@ export async function mergeImagesToPdf(files: File[]): Promise<Blob> {
     const base64 = await blobToBase64(file)
 
     // Add image to current page
-    doc.addImage(base64, 'JPEG', xOffset, yOffset, scaledWidth, scaledHeight)
+    const imgFormat = (file.type === 'image/png') ? 'PNG' : (file.type === 'image/webp') ? 'WEBP' : 'JPEG'
+    doc.addImage(base64, imgFormat, xOffset, yOffset, scaledWidth, scaledHeight)
   }
 
   // Return the merged PDF as Blob

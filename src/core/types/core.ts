@@ -1,6 +1,6 @@
 export type OutputFormat = 'image/png' | 'image/jpeg' | 'image/webp' | 'application/pdf'
 
-export type ConversionStatus = 'idle' | 'pending' | 'processing' | 'completed' | 'error'
+type ConversionStatus = 'idle' | 'processing' | 'completed' | 'error'
 
 export type ConvertedFile = {
   blob: Blob

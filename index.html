@@ -29,9 +29,38 @@
       "featureList": "Zero Server Uploads, Client-side Processing, Unlimited Batch Conversion"
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What image formats can I convert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Convert JPG, PNG, WebP, SVG, HEIC, and PDF. All processing happens locally in your browser with no server uploads."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is this image converter free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Secure Converter is completely free and open source. All processing happens locally in your browser."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is it safe to convert images here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your files never leave your device. All conversion happens client-side, ensuring complete privacy and security."
+        }
+      }]
+    }
+    </script>
     <title>Secure Converter | Convert JPG, PNG, WebP, SVG & HEIC Images Locally</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self' https://static.cloudflareinsights.com; worker-src 'self' blob:; font-src 'self'">
   </head>
-  <body>
+    <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 <!-- Cloudflare Web Analytics -->

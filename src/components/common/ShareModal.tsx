@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import { X, MessageCircle, Copy } from 'lucide-react'
+import { useState } from "react";
 
 interface ShareModalProps {
   isOpen: boolean

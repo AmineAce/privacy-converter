@@ -1,5 +1,5 @@
 // Cache for the heic-to module to avoid repeated imports
-let heicToModule: any = null
+let heicToModule: { heicTo: (opts: { blob: Blob; type: string; quality?: number }) => Promise<Blob> } | null = null
 
 async function getHeicTo() {
   if (!heicToModule) {

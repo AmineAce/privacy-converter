@@ -3,7 +3,7 @@
 The privacy-first, client-side file manipulation tool.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![React + Vite](https://img.shields.io/badge/React%20%2B%20Vite-18.2.0%20%2B%204.3.9-blue.svg)](https://reactjs.org/)
+[![React + Vite](https://img.shields.io/badge/React%20%2B%20Vite-19.2.0%20%2B%206.4.1-blue.svg)](https://reactjs.org/)
 [![Privacy: 100%](https://img.shields.io/badge/Privacy-100%25-green.svg)](https://github.com/AmineAce/privacy-converter)
 
 [View Live Demo](https://secure-jpg-to-png.pages.dev)
@@ -18,7 +18,7 @@ Modern file converters are privacy nightmares - they're bloated with ads, tracke
 
 - ✅ **Universal Conversion**: Support for JPG, PNG, WebP, SVG, and HEIC (iPhone).
 - ✅ **PDF Tools**: Convert images to PDF and Merge multiple images into a single PDF document.
-- ✅ **Zero Limits**: No file size limits (process 1GB+ files locally).
+- ✅ **50MB Max**: Files up to 50MB supported (covers 99% of use cases).
 - ✅ **Batch Engine**: Parallel processing for unlimited files.
 - ✅ **Progress Tracking**: Real-time progress bar shows conversion status for batch operations.
 - ✅ **Web Worker Architecture**: Background processing keeps UI responsive during conversions.
