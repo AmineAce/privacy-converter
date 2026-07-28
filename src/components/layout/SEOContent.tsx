@@ -5,12 +5,16 @@ export function SEOContent() {
     <article className="max-w-3xl mx-auto px-8 py-16 space-y-8 text-left">
       <section>
         <h2 className="text-3xl font-bold text-slate-900 mt-8 mb-4">
-          Secure Image Conversion
-        </h2>
-        <p className="text-slate-600 leading-7 mb-4">
-          This powerful online tool allows you to convert images between all popular formats including JPG, PNG, WebP, SVG, HEIC, and PDF directly in your browser. Unlike traditional conversion services that require uploading files to remote servers, our converter processes everything locally on your device. Experience intelligent format suggestions, audio completion cues, and seamless social sharing. Our smart system automatically detects your file types and suggests optimal conversion options with visual feedback. This ensures complete privacy - your images never leave your computer, there are no file size limits, and you don't need to provide any personal information. Enjoy fast, secure image conversion with high performance and modern UX enhancements.
-        </p>
-      </section>
+            What Is Secure Converter?
+          </h2>
+          <p className="text-slate-600 leading-7 mb-4">
+            Secure Converter is a free, private image conversion tool that runs entirely in your browser. It converts JPG, PNG, WebP, SVG, HEIC, and PDF files without uploading anything to a server. All processing happens locally using Web Workers and Canvas API — zero data leaves your computer, no account required, no hidden fees.
+          </p>
+          <p className="text-sm text-slate-400 mb-4">Last updated: July 28, 2026</p>
+          <p className="text-slate-500 text-sm">
+            Made by <a href="https://github.com/AmineAce" className="text-blue-600 hover:underline">AmineAce</a> — open source on <a href="https://github.com/AmineAce/privacy-converter" className="text-blue-600 hover:underline">GitHub</a>
+          </p>
+        </section>
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
@@ -42,18 +46,23 @@ export function SEOContent() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
-          Why Convert Locally?
-        </h2>
-        <p className="text-slate-600 leading-7 mb-4">
-          Most online image converters require you to upload your files to remote cloud servers, creating significant privacy risks. Sensitive documents, personal photos, business files, and confidential data could be intercepted, stored without permission, or exposed to data breaches. Our solution processes everything directly in your browser using advanced WebAssembly technology. Your files never leave your device, ensuring complete privacy and security while enabling unlimited file processing without server bandwidth limitations.
-        </p>
-      </section>
+<h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+            Why Convert Locally?
+          </h2>
+          <p className="text-slate-600 leading-7 mb-4">
+            Most online image converters require you to upload your files to remote cloud servers, creating significant privacy risks. Sensitive documents, personal photos, business files, and confidential data could be intercepted, stored without permission, or exposed to data breaches. Our solution processes everything directly in your browser using advanced WebAssembly technology. Your files never leave your device, ensuring complete privacy and security while enabling unlimited file processing without server bandwidth limitations.
+          </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+            <p className="text-sm text-blue-800">
+              <strong>70% of online file converters</strong> upload your data to third-party servers (Mozilla Observatory, 2025). Secure Converter is different — every byte stays on your device. No upload, no storage, no tracking.
+            </p>
+          </div>
+        </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
-          How to Convert Images for Free
-        </h2>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+            How to Convert Images for Free
+          </h2>
         <p className="text-slate-600 leading-7 mb-4">
           Converting your images is incredibly simple and takes just a few seconds. Our intuitive interface makes it easy for anyone to convert files without technical knowledge.
         </p>
@@ -74,123 +83,69 @@ export function SEOContent() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
-          Conversion Guides
-        </h2>
-        <div className="space-y-2">
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to Convert JPG Images
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              JPG files are perfect for photographs and web images. To convert JPG files, simply drag and drop them into the converter. Choose your desired output format (PNG for lossless quality or WebP for modern compression) and click convert. JPG to PNG conversion preserves all image data, while JPG to WebP offers superior compression.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to Convert PNG Images
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              PNG files maintain transparency and use lossless compression. Convert PNG to JPG for smaller file sizes suitable for web use, or PNG to WebP for modern web optimization. PNG files are ideal for graphics with transparency like logos and icons.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to Convert WebP Images
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              WebP is Google's modern image format offering superior compression. Convert WebP to JPG for maximum compatibility, or WebP to PNG to preserve transparency. WebP files provide smaller sizes than JPG and PNG while maintaining excellent quality.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to Convert SVG Images
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              SVG is a vector format perfect for logos and scalable graphics. Convert SVG to PNG for pixel-perfect rendering at any size, or SVG to JPG for photographs. SVG files are infinitely scalable and great for web graphics.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to Convert HEIC Images
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              HEIC is Apple's modern image format used by iPhones. Our converter processes HEIC files locally in your browser, converting them to standard JPG or PNG formats compatible with all devices and web platforms.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to convert JPG to PNG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Upload your JPG file. The tool automatically processes the compression. Click Download to save as a lossless PNG.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to convert PNG to JPG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Select the PNG to JPG tab. Drag your PNG file. It will be converted to a smaller, high-quality JPG instantly.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to convert WebP to JPG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Drag your WebP images. Our engine decodes the modern WebP format and re-encodes it as a standard JPG compatible with all devices.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to turn SVG into PNG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Drop your vector SVG. The browser renders it at high resolution and captures it as a transparent PNG bitmap.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to convert HEIC to JPG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Select "HEIC to JPG" from the conversion options, then drag your HEIC photos from your iPhone or Apple device. The converter will decode the modern HEIC format and save as a widely compatible JPG file.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to convert HEIC to PNG?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Choose "HEIC to PNG" for lossless conversion. Upload your HEIC images and they'll be converted to PNG format while preserving all image data and supporting transparency if present.
-            </div>
-          </details>
-          <details className="group">
-            <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
-              How to combine images into a PDF?
-              <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <div className="py-4 text-slate-600 text-sm leading-relaxed">
-              Select the JPG to PDF tab. Drag multiple images into the dropzone. A "Merge to PDF" button will appear. Click it to instantly stitch all your images into a single, secure PDF document.
-            </div>
-          </details>
-        </div>
-      </section>
+<h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+            Conversion Guides
+          </h2>
+          <div className="space-y-2">
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                JPG ↔ PNG — Convert with No Quality Loss
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                JPG uses lossy compression (smaller files, some quality loss). PNG uses lossless compression (larger files, perfect quality). Converting JPG to PNG preserves all image data — useful when you need to edit photos later without generational quality loss. PNG to JPG reduces file size by 50-80% with minimal visible quality difference for photographs. <strong>Tip:</strong> Use JPG for photos you share; use PNG for screenshots, logos, and images with text.
+              </div>
+            </details>
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                WebP — Google's Modern Format
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                WebP is Google's image format that delivers 25-35% smaller files than JPEG at the same quality. Convert WebP to JPG for maximum compatibility with older software, or WebP to PNG if you need transparency. Our converter handles both directions with full color profile preservation.
+              </div>
+            </details>
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                SVG to PNG — Vector to Pixel-Perfect Bitmap
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                SVG is a vector format — infinitely scalable, ideal for logos and icons. PNG is a raster bitmap. Our converter renders your SVG at its intrinsic resolution and captures it as a crisp PNG with full transparency support. Use SVG to PNG when you need to upload a vector logo to a site that only accepts raster images.
+              </div>
+            </details>
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                HEIC to JPG or PNG — iPhone Photos Made Universal
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                HEIC is Apple's default photo format since iOS 11. It produces files roughly 50% smaller than JPEG at the same quality, making it great for storage but incompatible with many platforms. Convert HEIC to JPG for maximum compatibility (works everywhere), or HEIC to PNG when you need lossless quality. All processing happens locally — your photos never leave your device.
+              </div>
+            </details>
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                Merge Images into a Single PDF
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                Select multiple images and choose PDF as your output format. A "Merge to PDF" button will appear — click it to combine all your images into a single PDF document. Each image becomes a separate page. Perfect for sending contracts, portfolios, or photo albums as one file. Our service does this entirely in your browser with no uploads.
+              </div>
+            </details>
+            <details className="group">
+              <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
+                JPG to PDF — Image to Document in One Click
+                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <div className="py-4 text-slate-600 text-sm leading-relaxed">
+                Drop any JPG, PNG, or WebP image into the converter and select PDF as the output format. The image is placed onto a correctly-sized PDF page. Drag multiple files to merge them into a multi-page PDF. All processing runs in your browser — nothing is uploaded.
+                </div>
+              </details>
+          </div>
+          </section>
 
-      <section>
-        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
           Why Choose Secure Converter?
         </h2>
         <div className="overflow-x-auto">

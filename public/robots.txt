@@ -1,4 +1,25 @@
+# AI search crawlers — allowed for citation and AI Overview inclusion
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# General crawlers
 User-agent: *
 Allow: /
 
+# Sitemaps
 Sitemap: https://secure-jpg-to-png.pages.dev/sitemap.xml

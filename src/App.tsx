@@ -17,7 +17,7 @@ function App() {
       <main className="flex-1 flex">
           <div className="flex-1 min-w-0 flex flex-col items-center">
             <div className="w-full max-w-3xl p-8 space-y-8">
-              <h1 className="sr-only">Secure Converter</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-center text-slate-900 mb-2">Convert Images Privately — No Upload Required</h1>
               <IntroHero />
             <div className="mt-6">
                 <ConversionNav />
