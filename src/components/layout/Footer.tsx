@@ -7,7 +7,8 @@ export function Footer() {
         <div className="flex flex-col items-center gap-4">
           <p className="text-slate-900">© 2026 Secure Converter</p>
           <p className="text-sm text-slate-500 text-center">
-            All conversions happen locally. Your files never leave your device.
+            All conversions happen locally. Your files never leave your device.<br />
+            Zero uploads. Zero tracking. 100% free &amp; open source.. Your files never leave your device.
           </p>
           <a
             href="https://github.com/AmineAce/privacy-converter"

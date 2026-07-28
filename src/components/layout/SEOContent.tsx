@@ -191,10 +191,59 @@ export function SEOContent() {
 
       <section>
         <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
-          Why do we have ads?
+          Why Choose Secure Converter?
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr className="border-b-2 border-slate-200">
+                <th className="py-3 pr-4 font-semibold text-slate-900">Feature</th>
+                <th className="py-3 pr-4 font-semibold text-green-700">Secure Converter</th>
+                <th className="py-3 font-semibold text-slate-400">Cloud Converters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-100">
+                <td className="py-3 pr-4 text-slate-700">Your Files</td>
+                <td className="py-3 pr-4 text-green-700">Stay on your device</td>
+                <td className="py-3 text-slate-400">Uploaded to remote servers</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-3 pr-4 text-slate-700">Privacy</td>
+                <td className="py-3 pr-4 text-green-700">100% private, no tracking</td>
+                <td className="py-3 text-slate-400">Data retention &amp; analytics</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-3 pr-4 text-slate-700">File Size Limit</td>
+                <td className="py-3 pr-4 text-green-700">50MB per file</td>
+                <td className="py-3 text-slate-400">10-25MB typical</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-3 pr-4 text-slate-700">Batch Processing</td>
+                <td className="py-3 pr-4 text-green-700">Unlimited, parallel</td>
+                <td className="py-3 text-slate-400">Limited or paid</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="py-3 pr-4 text-slate-700">Cost</td>
+                <td className="py-3 pr-4 text-green-700">Free &amp; open source</td>
+                <td className="py-3 text-slate-400">Ads, freemium, or paid plans</td>
+              </tr>
+              <tr>
+                <td className="py-3 pr-4 text-slate-700">Formats</td>
+                <td className="py-3 pr-4 text-green-700">JPG, PNG, WebP, SVG, HEIC, PDF</td>
+                <td className="py-3 text-slate-400">Varies, often limited</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+          Ready to convert?
         </h2>
         <p className="text-slate-600 leading-7 mb-4">
-          Secure Converter is 100% free and open source. To cover the costs of hosting, domain maintenance, and development without selling your data, we partner with privacy-focused companies (like VPNs) that we personally trust. These recommendations allow us to keep the tool free for everyone forever.
+          Drag and drop your files above. No signup, no uploads, no limits. Just fast, private conversion right in your browser — your images never leave your device.
         </p>
       </section>
 
