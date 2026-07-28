@@ -1,0 +1,18 @@
+# Secure Converter
+
+## What
+Secure Converter is a free, private image conversion tool that runs 100% in your browser. It converts JPG, PNG, WebP, SVG, HEIC, and PDF files without uploading anything to a server.
+
+## Key features
+- Zero server uploads — all processing happens client-side
+- Supports JPG, PNG, WebP, SVG, HEIC, PDF
+- Batch conversion with parallel processing (up to 5 files at once)
+- Merge images into a single PDF
+- 50MB max file size per image
+- Free & open source (MIT)
+- No account or signup required
+
+## Useful links
+- [Home](https://secure-jpg-to-png.pages.dev/)
+- [GitHub](https://github.com/AmineAce/privacy-converter)
+- [Sitemap](https://secure-jpg-to-png.pages.dev/sitemap.xml)
