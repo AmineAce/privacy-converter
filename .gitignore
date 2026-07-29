@@ -29,3 +29,5 @@ coverage
 *.sln
 *.sw?
 .empryo
+.vercel
+.env*

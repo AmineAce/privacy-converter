@@ -6,7 +6,7 @@ The privacy-first, client-side file manipulation tool.
 [![React + Vite](https://img.shields.io/badge/React%20%2B%20Vite-19.2.0%20%2B%206.4.1-blue.svg)](https://reactjs.org/)
 [![Privacy: 100%](https://img.shields.io/badge/Privacy-100%25-green.svg)](https://github.com/AmineAce/privacy-converter)
 
-[View Live Demo](https://secure-jpg-to-png.pages.dev)
+[View Live Demo](https://secure-converter.vercel.app)
 
 ![App Screenshot](./public/og-image.png)
 
