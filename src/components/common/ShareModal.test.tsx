@@ -74,7 +74,7 @@ describe('ShareModal', () => {
 
     render(<ShareModal isOpen={true} onClose={onClose} />)
     fireEvent.click(screen.getByText('Copy Link'))
-    expect(writeText).toHaveBeenCalledWith('https://secure-jpg-to-png.pages.dev/')
+    expect(writeText).toHaveBeenCalledWith('https://secure-converter-s.vercel.app/')
   })
 
   it('shows "Copied!" after copying link', async () => {

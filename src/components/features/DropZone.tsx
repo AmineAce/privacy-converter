@@ -86,7 +86,7 @@ export function DropZone({ className }: { className?: string } = {}) {
       )}
     >
       <input {...getInputProps({ 'aria-label': 'Upload images' })} />
-      <Upload className="w-10 h-10 text-slate-400" />
+      <Upload className="w-10 h-10 text-slate-500" />
       <p className="text-lg font-medium text-gray-900">
         Drag & drop images here
       </p>

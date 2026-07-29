@@ -23,7 +23,7 @@ export function FileItem({ job }: FileItemProps) {
     <div className="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">
       {isHeic ? (
         <div className="w-16 h-16 bg-slate-100 flex items-center justify-center rounded border border-slate-200">
-          <FileImage className="w-8 h-8 text-slate-400" />
+          <FileImage className="w-8 h-8 text-slate-500" />
         </div>
       ) : (
         <img

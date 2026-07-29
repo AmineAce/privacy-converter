@@ -16,9 +16,9 @@ export function SEOContent() {
           <p className="text-slate-600 leading-7 mb-4">
             Secure Converter is a free, private image conversion tool that runs entirely in your browser. It converts JPG, PNG, WebP, SVG, HEIC, and PDF files without uploading anything to a server. All processing happens locally using Web Workers and Canvas API — zero data leaves your computer, no account required, no hidden fees.
           </p>
-          <p className="text-sm text-slate-400 mb-4">Last updated: July 28, 2026</p>
-          <p className="text-slate-500 text-sm">
-            Made by <a href="https://github.com/AmineAce" className="text-blue-600 hover:underline">AmineAce</a> — open source on <a href="https://github.com/AmineAce/privacy-converter" className="text-blue-600 hover:underline">GitHub</a>
+          <p className="text-sm text-slate-500 mb-4">Last updated: July 28, 2026</p>
+          <p className="text-slate-600 text-sm">
+            Made by <a href="https://github.com/AmineAce" className="text-blue-600 underline hover:no-underline">AmineAce</a> — open source on <a href="https://github.com/AmineAce/privacy-converter" className="text-blue-600 underline hover:no-underline">GitHub</a>
           </p>
         </section>
 
@@ -68,7 +68,7 @@ export function SEOContent() {
               <strong>70% of online file converters</strong> upload your data to third-party servers (Mozilla Observatory, 2025). Secure Converter is different — every byte stays on your device. No upload, no storage, no tracking.
               </p>
             </div>
-            <p className="text-sm text-slate-500 mt-2">See our <a href="#conversion-guides" className="text-blue-600 hover:underline">conversion guides below</a> for format-specific comparisons and step-by-step tips.</p>
+            <p className="text-sm text-slate-600 mt-2">See our <a href="#conversion-guides" className="text-blue-600 underline hover:no-underline">conversion guides below</a> for format-specific comparisons and step-by-step tips.</p>
           </section>
 
           <section>
@@ -102,7 +102,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 JPG ↔ PNG — Convert with No Quality Loss
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 JPG uses lossy compression (smaller files, some quality loss). PNG uses lossless compression (larger files, perfect quality). Converting JPG to PNG preserves all image data — useful when you need to edit photos later without generational quality loss. PNG to JPG reduces file size by 50-80% with minimal visible quality difference for photographs. <strong>Tip:</strong> Use JPG for photos you share; use PNG for screenshots, logos, and images with text.
@@ -111,7 +111,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 WebP — Google's Modern Format
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 WebP is Google's image format that delivers 25-35% smaller files than JPEG at the same quality — at the cost of slightly longer encode times. Convert WebP to JPG for maximum compatibility with older software, or WebP to PNG if you need transparency. Our converter handles both directions with full color profile preservation. <strong>Data:</strong> WebP lossless is 26% smaller than PNG; WebP lossy is 25-34% smaller than JPEG at equivalent SSIM scores (Google WebP study, 2023).
@@ -120,7 +120,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 SVG to PNG — Vector to Pixel-Perfect Bitmap
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 SVG is a vector format — infinitely scalable, ideal for logos and icons. PNG is a raster bitmap. Our converter renders your SVG at its intrinsic resolution and captures it as a crisp PNG with full transparency support. Use SVG to PNG when you need to upload a vector logo to a site that only accepts raster images.
@@ -129,7 +129,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 HEIC to JPG or PNG — iPhone Photos Made Universal
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 HEIC is Apple's default photo format since iOS 11. It produces files roughly 50% smaller than JPEG at the same quality, making it great for storage but incompatible with many platforms. Convert HEIC to JPG for maximum compatibility (works everywhere), or HEIC to PNG when you need lossless quality. All processing happens locally — your photos never leave your device.
@@ -138,7 +138,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 Merge Images into a Single PDF
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 Select multiple images and choose PDF as your output format. A "Merge to PDF" button will appear — click it to combine all your images into a single PDF document. Each image becomes a separate page. Perfect for sending contracts, portfolios, or photo albums as one file. Our service does this entirely in your browser with no uploads.
@@ -147,7 +147,7 @@ export function SEOContent() {
             <details className="group">
               <summary className="cursor-pointer font-medium text-slate-800 py-3 border-b border-slate-100 flex justify-between items-center list-none marker:content-none">
                 JPG to PDF — Image to Document in One Click
-                <span className="text-slate-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+                <span className="text-slate-500 group-open:rotate-180 transition-transform duration-200">▼</span>
               </summary>
               <div className="py-4 text-slate-600 text-sm leading-relaxed">
                 Drop any JPG, PNG, or WebP image into the converter and select PDF as the output format. The image is placed onto a correctly-sized PDF page. Drag multiple files to merge them into a multi-page PDF. All processing runs in your browser — nothing is uploaded.
@@ -166,39 +166,39 @@ export function SEOContent() {
               <tr className="border-b-2 border-slate-200">
                 <th className="py-3 pr-4 font-semibold text-slate-900">Feature</th>
                 <th className="py-3 pr-4 font-semibold text-green-700">Secure Converter</th>
-                <th className="py-3 font-semibold text-slate-400">Cloud Converters</th>
+                <th className="py-3 font-semibold text-slate-500">Cloud Converters</th>
               </tr>
             </thead>
             <tbody>
               <tr className="border-b border-slate-100">
                 <td className="py-3 pr-4 text-slate-700">Your Files</td>
                 <td className="py-3 pr-4 text-green-700">Stay on your device</td>
-                <td className="py-3 text-slate-400">Uploaded to remote servers</td>
+                <td className="py-3 text-slate-500">Uploaded to remote servers</td>
               </tr>
               <tr className="border-b border-slate-100">
                 <td className="py-3 pr-4 text-slate-700">Privacy</td>
                 <td className="py-3 pr-4 text-green-700">100% private, no tracking</td>
-                <td className="py-3 text-slate-400">Data retention &amp; analytics</td>
+                <td className="py-3 text-slate-500">Data retention &amp; analytics</td>
               </tr>
               <tr className="border-b border-slate-100">
                 <td className="py-3 pr-4 text-slate-700">File Size Limit</td>
                 <td className="py-3 pr-4 text-green-700">50MB per file</td>
-                <td className="py-3 text-slate-400">10-25MB typical</td>
+                <td className="py-3 text-slate-500">10-25MB typical</td>
               </tr>
               <tr className="border-b border-slate-100">
                 <td className="py-3 pr-4 text-slate-700">Batch Processing</td>
                 <td className="py-3 pr-4 text-green-700">Unlimited, parallel</td>
-                <td className="py-3 text-slate-400">Limited or paid</td>
+                <td className="py-3 text-slate-500">Limited or paid</td>
               </tr>
               <tr className="border-b border-slate-100">
                 <td className="py-3 pr-4 text-slate-700">Cost</td>
                 <td className="py-3 pr-4 text-green-700">Free &amp; open source</td>
-                <td className="py-3 text-slate-400">Ads, freemium, or paid plans</td>
+                <td className="py-3 text-slate-500">Ads, freemium, or paid plans</td>
               </tr>
               <tr>
                 <td className="py-3 pr-4 text-slate-700">Formats</td>
                 <td className="py-3 pr-4 text-green-700">JPG, PNG, WebP, SVG, HEIC, PDF</td>
-                <td className="py-3 text-slate-400">Varies, often limited</td>
+                <td className="py-3 text-slate-500">Varies, often limited</td>
               </tr>
             </tbody>
           </table>

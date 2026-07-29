@@ -13,20 +13,20 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 
   const handleShareOnX = () => {
     const text = encodeURIComponent("Check out Secure Converter - a privacy-first image converter that processes locally in your browser! No uploads, no trackers.")
-    const url = encodeURIComponent("https://secure-jpg-to-png.pages.dev")
+    const url = encodeURIComponent("https://secure-converter-s.vercel.app")
     const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
     window.open(shareUrl, '_blank', 'noopener,noreferrer')
   }
 
   const handleShareOnWhatsApp = () => {
-    const text = encodeURIComponent("Check out Secure Converter - a privacy-first image converter that processes locally in your browser! No uploads, no trackers. https://secure-jpg-to-png.pages.dev")
+    const text = encodeURIComponent("Check out Secure Converter - a privacy-first image converter that processes locally in your browser! No uploads, no trackers. https://secure-converter-s.vercel.app")
     const shareUrl = `https://wa.me/?text=${text}`
     window.open(shareUrl, '_blank', 'noopener,noreferrer')
   }
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText('https://secure-jpg-to-png.pages.dev/')
+      await navigator.clipboard.writeText('https://secure-converter-s.vercel.app/')
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch (error) {

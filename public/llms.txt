@@ -13,6 +13,6 @@ Secure Converter is a free, private image conversion tool that runs 100% in your
 - No account or signup required
 
 ## Useful links
-- [Home](https://secure-jpg-to-png.pages.dev/)
+- [Home](https://secure-converter-s.vercel.app/)
 - [GitHub](https://github.com/AmineAce/privacy-converter)
-- [Sitemap](https://secure-jpg-to-png.pages.dev/sitemap.xml)
+- [Sitemap](https://secure-converter-s.vercel.app/sitemap.xml)

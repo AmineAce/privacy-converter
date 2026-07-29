@@ -22,20 +22,22 @@ export function Header() {
               onClick={() => window.open('https://forms.gle/M5YAnWM4uNcmf3kb9', '_blank', 'noopener,noreferrer')}
               variant="outline"
               size="sm"
-              className="text-brand-dark hover:bg-brand-sage/10 border-brand-sage/30"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span className="hidden md:inline ml-2">Feedback</span>
-              </Button>
+aria-label="Feedback"
+                className="text-brand-dark hover:bg-brand-sage/10 border-brand-sage/30"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span className="hidden md:inline ml-2">Feedback</span>
+                </Button>
               <Button
                 onClick={() => setIsShareOpen(true)}
                 variant="outline"
                 size="sm"
-                className="text-brand-dark hover:bg-brand-sage/10 border-brand-sage/30"
+aria-label="Share"
+                  className="text-brand-dark hover:bg-brand-sage/10 border-brand-sage/30"
                 >
-                <Share2 className="w-4 h-4" />
-                <span className="hidden md:inline ml-2">Share</span>
-              </Button>
+                  <Share2 className="w-4 h-4" />
+                  <span className="hidden md:inline ml-2">Share</span>
+                </Button>
           </div>
         </div>
       </header>

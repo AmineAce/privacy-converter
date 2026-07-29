@@ -1,7 +1,7 @@
-import JSZip from 'jszip'
 import type { ImageJob } from '@/core/types/core'
 
 export async function downloadAllAsZip(jobs: ImageJob[]): Promise<void> {
+  const { default: JSZip } = await import('jszip')
   const zip = new JSZip()
 
   const validJobs = jobs.filter((job) => job.status === 'completed' && job.result)
