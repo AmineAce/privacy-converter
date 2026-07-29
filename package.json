@@ -12,7 +12,9 @@
     "preview": "vite preview",
       "test": "vitest run",
     "test:watch": "vitest",
-    "optimize-audio": "scripts/optimize-audio.sh"
+    "postbuild": "scripts/verify-audio.sh",
+    "optimize-audio": "scripts/optimize-audio.sh",
+    "verify-audio": "scripts/verify-audio.sh"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

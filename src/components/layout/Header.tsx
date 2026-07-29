@@ -9,8 +9,8 @@ export function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-brand-sage/15 h-16">
-        <div className="max-w-3xl mx-auto px-8 h-full flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="max-w-3xl mx-auto px-8 h-full flex items-center justify-between max-sm:px-4">
+          <div className="flex items-center gap-3 max-sm:gap-2">
             <img src="/favicons/logo.webp" alt="Logo" width="32" height="32" className="w-8 h-8" />
             <span className="font-bold text-brand-dark">Secure Converter</span>
           </div>
