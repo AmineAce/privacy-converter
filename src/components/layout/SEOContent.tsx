@@ -18,7 +18,7 @@ export function SEOContent() {
           </p>
           <p className="text-sm text-slate-500 mb-4">Last updated: July 28, 2026</p>
           <p className="text-slate-600 text-sm">
-            Made by <a href="https://github.com/AmineAce" className="text-blue-600 underline hover:no-underline">AmineAce</a> — open source on <a href="https://github.com/AmineAce/privacy-converter" className="text-blue-600 underline hover:no-underline">GitHub</a>
+            Made by <a href="https://github.com/AmineAce" className="font-semibold text-blue-600 underline hover:no-underline">AmineAce</a> — open source on <a href="https://github.com/AmineAce/privacy-converter" className="font-semibold text-blue-600 underline hover:no-underline">GitHub</a>
           </p>
         </section>
 
@@ -68,7 +68,7 @@ export function SEOContent() {
               <strong>70% of online file converters</strong> upload your data to third-party servers (Mozilla Observatory, 2025). Secure Converter is different — every byte stays on your device. No upload, no storage, no tracking.
               </p>
             </div>
-            <p className="text-sm text-slate-600 mt-2">See our <a href="#conversion-guides" className="text-blue-600 underline hover:no-underline">conversion guides below</a> for format-specific comparisons and step-by-step tips.</p>
+            <p className="text-sm text-slate-600 mt-2">See our <a href="#conversion-guides" className="font-semibold text-blue-600 underline hover:no-underline">conversion guides below</a> for format-specific comparisons and step-by-step tips.</p>
           </section>
 
           <section>
